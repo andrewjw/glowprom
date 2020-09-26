@@ -1,0 +1,7 @@
+[run]
+ omit =
+    test.py
+    */site-packages/
+    tests/*
+    /home/travis/virtualenv/*
+    /usr/*
