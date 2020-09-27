@@ -16,4 +16,4 @@
 
 from .arguments import get_arguments, InvalidArguments
 
-__version__ = "0.0.1"
+__version__ = "0.0.2"
