@@ -15,3 +15,4 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from .test_arguments import TestArguments
+from .test_mqtt import TestMQTT

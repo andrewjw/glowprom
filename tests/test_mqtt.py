@@ -1,4 +1,3 @@
-#!/usr/bin/env python3.8
 # glowprom
 # Copyright (C) 2020 Andrew Wilkinson
 #
@@ -15,17 +14,31 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import sys
+import unittest
+from unittest.mock import MagicMock, patch
 
-from glowprom import get_arguments, connect
+from glowprom import connect
+
+
+class Arguments:
+    topic = "TestTopic"
+    user = "TestUser"
+    passwd = "TestPasswd"
+
 
 def on_message(client, userdata, msg):
     print(str(msg.payload))
 
-def main():
-    args = get_arguments(sys.argv[1:])
 
-    connect(args, on_message)
+class TestMQTT(unittest.TestCase):
+    @patch("paho.mqtt.client.Client", return_value=MagicMock())
+    def test_connect(self, client):
+        clientobj = client()
 
-if __name__ == "__main__":
-    main()
+        connect(Arguments(), on_message)
+
+        self.assertTrue(clientobj.connect.called)
+
+        clientobj.on_connect(clientobj, None, None, None)
+
+        self.assertTrue(clientobj.subscribe.called)

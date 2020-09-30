@@ -14,6 +14,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from .arguments import get_arguments, InvalidArguments
+from .arguments import get_arguments
+from .exceptions import InvalidArguments
+from .mqtt import connect
 
 __version__ = "0.0.2"

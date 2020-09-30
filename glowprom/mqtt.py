@@ -1,4 +1,3 @@
-#!/usr/bin/env python3.8
 # glowprom
 # Copyright (C) 2020 Andrew Wilkinson
 #
@@ -15,17 +14,23 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import sys
+import functools
 
-from glowprom import get_arguments, connect
+import paho.mqtt.client as mqtt
 
-def on_message(client, userdata, msg):
-    print(str(msg.payload))
 
-def main():
-    args = get_arguments(sys.argv[1:])
+def on_connect(topic, client, userdata, flags, rc):
+    print("Connected with result code "+str(rc))
 
-    connect(args, on_message)
+    client.subscribe(topic)
 
-if __name__ == "__main__":
-    main()
+
+def connect(args, on_message):
+    client = mqtt.Client()
+    client.on_connect = functools.partial(on_connect, args.topic)
+    client.on_message = on_message
+
+    client.username_pw_set(args.user, password=args.passwd)
+    client.connect("glowmqtt.energyhive.com", 1883, 60)
+
+    client.loop_forever()
