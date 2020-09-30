@@ -18,4 +18,4 @@ from .arguments import get_arguments
 from .exceptions import InvalidArguments
 from .mqtt import connect
 
-__version__ = "0.0.2"
+__version__ = "0.1.0"
