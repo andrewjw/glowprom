@@ -16,7 +16,7 @@
 
 import setuptools
 
-from zyxelprometheus import __version__
+from glowprom import __version__
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
