@@ -15,6 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+import threading
 import sys
 
 from glowprom import get_arguments, connect, serve, update_stats
@@ -22,7 +23,9 @@ from glowprom import get_arguments, connect, serve, update_stats
 def main():
     args = get_arguments(sys.argv[1:])
 
-    connect(args, update_stats)
+    threading.Thread(target=connect,
+                     args=(args, update_stats),
+                     daemon=True).start()
 
     serve(args)
 
