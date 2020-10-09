@@ -87,7 +87,7 @@ def prometheus(msg):
         elec_multiplier / elec_divisor
     elec_weekly_consumption = elec_weekly_consumption * \
         elec_multiplier / elec_divisor
-    electricity_monthly_consumption = elec_monthly_consumption * \
+    elec_monthly_consumption = elec_monthly_consumption * \
         elec_multiplier / elec_divisor
     electricity_meter = elec_meter * elec_multiplier / elec_divisor
     gas_daily_consumption = gas_daily_consumption * \
