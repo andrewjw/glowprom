@@ -17,15 +17,14 @@
 
 import sys
 
-from glowprom import get_arguments, connect
-
-def on_message(client, userdata, msg):
-    print(str(msg.payload))
+from glowprom import get_arguments, connect, serve, update_stats
 
 def main():
     args = get_arguments(sys.argv[1:])
 
-    connect(args, on_message)
+    connect(args, update_stats)
+
+    serve(args)
 
 if __name__ == "__main__":
     main()

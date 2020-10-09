@@ -14,7 +14,22 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from .test_arguments import TestArguments
-from .test_mqtt import TestMQTT
-from .test_prometheus import TestPrometheus
-from .test_server import TestServer
+import os
+import unittest
+
+from glowprom import prometheus
+
+
+MESSAGE_TEXT = open("tests/test_message.txt", "rb").read()
+
+
+class MockMessage:
+    payload = MESSAGE_TEXT
+
+
+class TestPrometheus(unittest.TestCase):
+    def test_prometheus(self):
+        prom = prometheus(MockMessage())
+
+        self.assertIn("consumption{type='electricity',period='daily'} 7.971",
+                      prom)

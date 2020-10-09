@@ -17,5 +17,7 @@
 from .arguments import get_arguments
 from .exceptions import InvalidArguments
 from .mqtt import connect
+from .prometheus import prometheus
+from .server import serve, update_stats
 
 __version__ = "0.1.1"
