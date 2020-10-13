@@ -59,6 +59,10 @@ import json
 #   - 01: ProviderName (string)
 
 
+METRIC = "consumption{{type='{type}',period='{period}'}} {value}"
+METER = "meter{{type='{type}'}} {value}"
+
+
 def prometheus(msg):
     # Code adapted from
     # https://gist.github.com/ndfred/b373eeafc4f5b0870c1b8857041289a9
@@ -98,13 +102,27 @@ def prometheus(msg):
         gas_multiplier / gas_divisor
     gas_meter = gas_meter * gas_multiplier / gas_divisor
 
-    return f"""
-consumption{{type='electricity',period='daily'}} {elec_daily_consumption}
-consumption{{type='electricity',period='weekly'}} {elec_weekly_consumption}
-consumption{{type='electricity',period='monthly'}} {elec_monthly_consumption}
-meter{{type='electricity'}} {electricity_meter}
-consumption{{type='gas',period='daily'}} {gas_daily_consumption}
-consumption{{type='gas',period='weekly'}} {gas_weekly_consumption}
-consumption{{type='gas',period='monthly'}} {gas_monthly_consumption}
-meter{{type='gas'}} {gas_meter}
-"""
+    return "\n".join([
+        METRIC.format(type="electricity",
+                      period="daily",
+                      value=elec_daily_consumption),
+        METRIC.format(type="electricity",
+                      period="weekly",
+                      value=elec_weekly_consumption),
+        METRIC.format(type="electricity",
+                      period="monthly",
+                      value=elec_monthly_consumption),
+        METER.format(type="electricity",
+                     value=electricity_meter),
+        METRIC.format(type="gas",
+                      period="daily",
+                      value=gas_daily_consumption),
+        METRIC.format(type="gas",
+                      period="weekly",
+                      value=gas_weekly_consumption),
+        METRIC.format(type="gas",
+                      period="monthly",
+                      value=elec_monthly_consumption),
+        METER.format(type="gas",
+                     value=gas_meter),
+    ])
