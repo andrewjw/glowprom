@@ -59,8 +59,8 @@ import json
 #   - 01: ProviderName (string)
 
 
-METRIC = "consumption{{type='{type}',period='{period}'}} {value}"
-METER = "meter{{type='{type}'}} {value}"
+METRIC = "consumption{{type=\"{type}\",period=\"{period}\"}} {value}"
+METER = "meter{{type=\"{type}\"}} {value}"
 
 
 def prometheus(msg):

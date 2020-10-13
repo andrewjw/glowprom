@@ -31,5 +31,5 @@ class TestPrometheus(unittest.TestCase):
     def test_prometheus(self):
         prom = prometheus(MockMessage())
 
-        self.assertIn("consumption{type='electricity',period='daily'} 7.971",
+        self.assertIn("consumption{type=\"electricity\",period=\"daily\"} 7.971",
                       prom)
