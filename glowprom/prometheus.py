@@ -68,6 +68,7 @@ METRIC_TYPE = "# TYPE consumption counter"
 METER_HELP = "# HELP meter The meter reading."
 METER_TYPE = "# TYPE meter counter"
 
+
 def prometheus(msg):
     # Code adapted from
     # https://gist.github.com/ndfred/b373eeafc4f5b0870c1b8857041289a9
