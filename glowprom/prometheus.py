@@ -62,6 +62,11 @@ import json
 METRIC = "consumption{{type=\"{type}\",period=\"{period}\"}} {value}"
 METER = "meter{{type=\"{type}\"}} {value}"
 
+METRIC_HELP = "# HELP consumption The consumption over the given period."
+METRIC_TYPE = "# TYPE consumption counter"
+
+METER_HELP = "# HELP meter The meter reading."
+METER_TYPE = "# TYPE meter counter"
 
 def prometheus(msg):
     # Code adapted from
@@ -103,6 +108,8 @@ def prometheus(msg):
     gas_meter = gas_meter * gas_multiplier / gas_divisor
 
     return "\n".join([
+        METRIC_HELP,
+        METRIC_TYPE,
         METRIC.format(type="electricity",
                       period="daily",
                       value=elec_daily_consumption),
@@ -112,8 +119,6 @@ def prometheus(msg):
         METRIC.format(type="electricity",
                       period="monthly",
                       value=elec_monthly_consumption),
-        METER.format(type="electricity",
-                     value=electricity_meter),
         METRIC.format(type="gas",
                       period="daily",
                       value=gas_daily_consumption),
@@ -123,6 +128,10 @@ def prometheus(msg):
         METRIC.format(type="gas",
                       period="monthly",
                       value=elec_monthly_consumption),
+        METER_HELP,
+        METER_TYPE,
+        METER.format(type="electricity",
+                     value=electricity_meter),
         METER.format(type="gas",
                      value=gas_meter),
     ])
