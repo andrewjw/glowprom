@@ -20,4 +20,4 @@ from .mqtt import connect
 from .prometheus import prometheus
 from .server import serve, update_stats
 
-__version__ = "0.2.3"
+__version__ = "0.2.4"
