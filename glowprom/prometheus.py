@@ -76,63 +76,74 @@ def prometheus(msg):
 
     elecMtr = payload["elecMtr"]["0702"]
 
-    elec_consumption = int(elecMtr["04"]["00"], 16)
-    elec_daily_consumption = int(elecMtr["04"]["01"], 16)
-    elec_weekly_consumption = int(elecMtr["04"]["30"], 16)
-    elec_monthly_consumption = int(elecMtr["04"]["40"], 16)
-    elec_multiplier = int(elecMtr["03"]["01"], 16)
-    elec_divisor = float(int(elecMtr["03"]["02"], 16))
-    elec_meter = int(elecMtr["00"]["00"], 16)
+    metrics, meters = [], []
+    if "04" not in elecMtr:
+        print("04 not found in electricity payload")
+        print(payload)
+    else:
+        elec_consumption = int(elecMtr["04"]["00"], 16)
+        elec_daily_consumption = int(elecMtr["04"]["01"], 16)
+        elec_weekly_consumption = int(elecMtr["04"]["30"], 16)
+        elec_monthly_consumption = int(elecMtr["04"]["40"], 16)
+        elec_multiplier = int(elecMtr["03"]["01"], 16)
+        elec_divisor = float(int(elecMtr["03"]["02"], 16))
+        elec_meter = int(elecMtr["00"]["00"], 16)
+
+        elec_daily_consumption = elec_daily_consumption * \
+            elec_multiplier / elec_divisor
+        elec_weekly_consumption = elec_weekly_consumption * \
+            elec_multiplier / elec_divisor
+        elec_monthly_consumption = elec_monthly_consumption * \
+            elec_multiplier / elec_divisor
+        electricity_meter = elec_meter * elec_multiplier / elec_divisor
+
+        metrics.extend([
+            METRIC.format(type="electricity",
+                          period="daily",
+                          value=elec_daily_consumption),
+            METRIC.format(type="electricity",
+                          period="weekly",
+                          value=elec_weekly_consumption),
+            METRIC.format(type="electricity",
+                          period="monthly",
+                          value=elec_monthly_consumption)])
+
+        meters.append(METER.format(type="electricity",
+                                   value=electricity_meter))
 
     gasMtr = payload["gasMtr"]["0702"]
 
-    gas_daily_consumption = int(gasMtr["0C"]["01"], 16)
-    gas_weekly_consumption = int(gasMtr["0C"]["30"], 16)
-    gas_monthly_consumption = int(gasMtr["0C"]["40"], 16)
-    gas_multiplier = int(gasMtr["03"]["01"], 16)
-    gas_divisor = float(int(gasMtr["03"]["02"], 16))
-    gas_meter = int(gasMtr["00"]["00"], 16)
+    if "0C" not in gasMtr:
+        print("0C not found in gas payload")
+        print(payload)
+    else:
+        gas_daily_consumption = int(gasMtr["0C"]["01"], 16)
+        gas_weekly_consumption = int(gasMtr["0C"]["30"], 16)
+        gas_monthly_consumption = int(gasMtr["0C"]["40"], 16)
+        gas_multiplier = int(gasMtr["03"]["01"], 16)
+        gas_divisor = float(int(gasMtr["03"]["02"], 16))
+        gas_meter = int(gasMtr["00"]["00"], 16)
 
-    elec_daily_consumption = elec_daily_consumption * \
-        elec_multiplier / elec_divisor
-    elec_weekly_consumption = elec_weekly_consumption * \
-        elec_multiplier / elec_divisor
-    elec_monthly_consumption = elec_monthly_consumption * \
-        elec_multiplier / elec_divisor
-    electricity_meter = elec_meter * elec_multiplier / elec_divisor
-    gas_daily_consumption = gas_daily_consumption * \
-        gas_multiplier / gas_divisor
-    gas_weekly_consumption = gas_weekly_consumption * \
-        gas_multiplier / gas_divisor
-    gas_monthly_consumption = gas_monthly_consumption * \
-        gas_multiplier / gas_divisor
-    gas_meter = gas_meter * gas_multiplier / gas_divisor
+        gas_daily_consumption = gas_daily_consumption * \
+            gas_multiplier / gas_divisor
+        gas_weekly_consumption = gas_weekly_consumption * \
+            gas_multiplier / gas_divisor
+        gas_monthly_consumption = gas_monthly_consumption * \
+            gas_multiplier / gas_divisor
+        gas_meter = gas_meter * gas_multiplier / gas_divisor
 
-    return "\n".join([
-        METRIC_HELP,
-        METRIC_TYPE,
-        METRIC.format(type="electricity",
-                      period="daily",
-                      value=elec_daily_consumption),
-        METRIC.format(type="electricity",
-                      period="weekly",
-                      value=elec_weekly_consumption),
-        METRIC.format(type="electricity",
-                      period="monthly",
-                      value=elec_monthly_consumption),
-        METRIC.format(type="gas",
-                      period="daily",
-                      value=gas_daily_consumption),
-        METRIC.format(type="gas",
-                      period="weekly",
-                      value=gas_weekly_consumption),
-        METRIC.format(type="gas",
-                      period="monthly",
-                      value=elec_monthly_consumption),
-        METER_HELP,
-        METER_TYPE,
-        METER.format(type="electricity",
-                     value=electricity_meter),
-        METER.format(type="gas",
-                     value=gas_meter),
-    ])
+        metrics.extend([
+            METRIC.format(type="gas",
+                          period="daily",
+                          value=gas_daily_consumption),
+            METRIC.format(type="gas",
+                          period="weekly",
+                          value=gas_weekly_consumption),
+            METRIC.format(type="gas",
+                          period="monthly",
+                          value=gas_monthly_consumption)])
+
+        meters.append(METER.format(type="gas", value=gas_meter))
+
+    return "\n".join([METRIC_HELP, METRIC_TYPE] + metrics + [
+        METER_HELP, METER_TYPE] + meters)
