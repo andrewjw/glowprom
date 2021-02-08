@@ -2,9 +2,7 @@
 
 set -e
 
-export
-
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 
 ./code_style.sh
 ./run_tests.sh
