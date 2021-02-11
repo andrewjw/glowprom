@@ -5,3 +5,4 @@
     tests/*
     /home/travis/virtualenv/*
     /usr/*
+    /home/buildbot/.local/lib/
