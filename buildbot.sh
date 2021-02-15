@@ -9,7 +9,7 @@ pip3 install -r requirements.txt
 
 BRANCH=$(git rev-parse --abbrev-ref HEAD)
 if [[ "$BRANCH" == "master" ]]; then
-  coveralls
+  COVERALLS_REPO_TOKEN=$GLOWPROM_COVERALLS_REPO_TOKEN coveralls
   semantic-release publish
 fi
 
