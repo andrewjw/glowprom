@@ -2,4 +2,4 @@ paho-mqtt==1.6.1
 pycodestyle==2.8.0
 coverage==6.0.2
 coveralls==3.2.0
-python-semantic-release==7.15.1
+python-semantic-release==7.28.1
