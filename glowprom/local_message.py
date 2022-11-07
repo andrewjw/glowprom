@@ -141,9 +141,6 @@ def local_message(msg):
     else:
         print(f"Unknown payload type {key}")
 
-    print(ELECTRIC_DATA)
-    print(GAS_DATA)
-
     lines = []
     for metric in METRIC_METADATA.keys():
         help, metric_type, has_units = METRIC_METADATA[metric]
