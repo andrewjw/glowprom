@@ -15,6 +15,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import functools
+import time
 
 import paho.mqtt.client as mqtt
 
@@ -25,12 +26,22 @@ def on_connect(topic, client, userdata, flags, rc):
     client.subscribe(topic)
 
 
-def connect(args, on_message):
+def connect(args, on_message, retry=True):
     client = mqtt.Client()
     client.on_connect = functools.partial(on_connect, args.topic)
     client.on_message = on_message
 
     client.username_pw_set(args.user, password=args.passwd)
-    client.connect("glowmqtt.energyhive.com", 1883, 60)
+
+    while True:
+        try:
+            client.connect(args.mqtt, args.port, 60)
+        except Exception as e:
+            if not retry:
+                raise
+            print(e)
+            time.sleep(10)
+        else:
+            break
 
     client.loop_forever()
