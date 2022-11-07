@@ -39,7 +39,7 @@ class MockHandler(Handler):
 
 class TestServer(unittest.TestCase):
     def setUp(self):
-        update_stats(None, None, None)
+        update_stats(True)(None, None, None)
 
     def test_index(self):
         handler = MockHandler()
@@ -58,7 +58,7 @@ class TestServer(unittest.TestCase):
         self.assertTrue("404" in handler.wfile.read().decode("utf8"))
 
     def test_metrics(self):
-        update_stats(None, None, MockMessage())
+        update_stats(True)(None, None, MockMessage())
 
         handler = MockHandler()
         handler.path = "/metrics"

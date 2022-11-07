@@ -28,7 +28,9 @@ def on_connect(topic, client, userdata, flags, rc):
 
 def connect(args, on_message, retry=True):
     client = mqtt.Client()
-    client.on_connect = functools.partial(on_connect, args.topic)
+    client.on_connect = \
+        functools.partial(on_connect,
+                          args.topic if args.cloud else "glow/+/+/+")
     client.on_message = on_message
 
     client.username_pw_set(args.user, password=args.passwd)

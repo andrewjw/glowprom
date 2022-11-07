@@ -21,6 +21,9 @@ from glowprom import connect
 
 
 class Arguments:
+    cloud = True
+    mqtt = "cloudmqtt"
+    port = 1883
     topic = "TestTopic"
     user = "TestUser"
     passwd = "TestPasswd"
@@ -35,7 +38,7 @@ class TestMQTT(unittest.TestCase):
     def test_connect(self, client):
         clientobj = client()
 
-        connect(Arguments(), on_message)
+        connect(Arguments(), on_message, retry=False)
 
         self.assertTrue(clientobj.connect.called)
 

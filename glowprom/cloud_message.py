@@ -59,17 +59,18 @@ import json
 #   - 01: ProviderName (string)
 
 
-METRIC = "consumption{{type=\"{type}\",period=\"{period}\"}} {value}"
-METER = "meter{{type=\"{type}\"}} {value}"
+METRIC = "glowprom_consumption{{type=\"{type}\",period=\"{period}\"}} {value}"
+METER = "glowprom_meter{{type=\"{type}\"}} {value}"
 
-METRIC_HELP = "# HELP consumption The consumption over the given period."
-METRIC_TYPE = "# TYPE consumption counter"
+METRIC_HELP = "# HELP glowprom_consumption" \
+            + " The consumption over the given period."
+METRIC_TYPE = "# TYPE glowprom_consumption counter"
 
-METER_HELP = "# HELP meter The meter reading."
-METER_TYPE = "# TYPE meter counter"
+METER_HELP = "# HELP glowprom_meter The meter reading."
+METER_TYPE = "# TYPE glowprom_meter counter"
 
 
-def prometheus(msg):
+def cloud_message(msg):
     # Code adapted from
     # https://gist.github.com/ndfred/b373eeafc4f5b0870c1b8857041289a9
     payload = json.loads(msg.payload)

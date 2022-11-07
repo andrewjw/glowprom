@@ -24,7 +24,7 @@ def main():
     args = get_arguments(sys.argv[1:])
 
     threading.Thread(target=connect,
-                     args=(args, update_stats),
+                     args=(args, update_stats(args.cloud)),
                      daemon=True).start()
 
     serve(args)

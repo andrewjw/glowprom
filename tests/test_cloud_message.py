@@ -15,10 +15,9 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import json
-import os
 import unittest
 
-from glowprom import prometheus
+from glowprom.cloud_message import cloud_message
 
 
 MESSAGE_TEXT = open("tests/test_message.txt", "rb").read()
@@ -29,31 +28,35 @@ class MockMessage:
         self.payload = payload
 
 
-class TestPrometheus(unittest.TestCase):
-    def test_prometheus(self):
-        prom = prometheus(MockMessage(MESSAGE_TEXT))
+class TestCloudMessage(unittest.TestCase):
+    def test_cloud_message(self):
+        prom = cloud_message(MockMessage(MESSAGE_TEXT))
 
         self.assertIn(
-            "consumption{type=\"electricity\",period=\"daily\"} 7.971", prom)
+            "glowprom_consumption{type=\"electricity\",period=\"daily\"} "
+            + "7.971", prom)
         self.assertIn(
-            "consumption{type=\"gas\",period=\"daily\"} 39.452", prom)
+            "glowprom_consumption{type=\"gas\",period=\"daily\"} 39.452",
+            prom)
 
     def test_missing_electricity(self):
         data = json.loads(MESSAGE_TEXT)
         del data["elecMtr"]["0702"]["04"]
-        prom = prometheus(MockMessage(json.dumps(data)))
+        prom = cloud_message(MockMessage(json.dumps(data)))
 
         self.assertNotIn(
-            "consumption{type=\"electricity\",period=\"daily\"} 7.971", prom)
+            "glowprom_consumption{type=\"electricity\",period=\"daily\"} "
+            + "7.971", prom)
         self.assertIn(
-            "consumption{type=\"gas\",period=\"daily\"} 39.452", prom)
+            "glowprom_consumption{type=\"gas\",period=\"daily\"} 39.452", prom)
 
     def test_missing_gas(self):
         data = json.loads(MESSAGE_TEXT)
         del data["gasMtr"]["0702"]["0C"]
-        prom = prometheus(MockMessage(json.dumps(data)))
+        prom = cloud_message(MockMessage(json.dumps(data)))
 
         self.assertIn(
-            "consumption{type=\"electricity\",period=\"daily\"} 7.971", prom)
+            "glowprom_consumption{type=\"electricity\",period=\"daily\"} "
+            + "7.971", prom)
         self.assertNotIn(
-            "consumption{type=\"gas\",period=\"daily\"} 39.452", prom)
+            "glowprom_consumption{type=\"gas\",period=\"daily\"} 39.452", prom)

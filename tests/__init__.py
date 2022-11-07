@@ -16,5 +16,6 @@
 
 from .test_arguments import TestArguments
 from .test_mqtt import TestMQTT
-from .test_prometheus import TestPrometheus
+from .test_cloud_message import TestCloudMessage
+from .test_local_message import TestLocalMessage
 from .test_server import TestServer

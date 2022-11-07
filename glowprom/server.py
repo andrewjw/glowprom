@@ -17,7 +17,8 @@
 from datetime import datetime
 import http.server
 
-from .prometheus import prometheus
+from .cloud_message import cloud_message
+from .local_message import local_message
 
 
 STATS = None
@@ -59,9 +60,13 @@ def serve(args):  # pragma: no cover
     server.serve_forever()
 
 
-def update_stats(client, userdata, msg):
-    global STATS
-    if msg is None:
-        STATS = None
-    else:
-        STATS = prometheus(msg)
+def update_stats(cloud):
+    prometheus = cloud_message if cloud else local_message
+
+    def update_stats(client, userdata, msg):
+        global STATS
+        if msg is None:
+            STATS = None
+        else:
+            STATS = prometheus(msg)
+    return update_stats

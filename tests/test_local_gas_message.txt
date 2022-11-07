@@ -1,0 +1,12 @@
+{"gasmeter": {"timestamp": "2022-11-07T09:35:38Z",
+   "energy": {"import": {"cumulative": 66589.57, "day": 17.326,
+                         "week": 17.326, "month": 383.157, "units": "kWh",
+                         "cumulativevol": 5995.276,
+                         "cumulativevolunits": "m3",
+                         "dayvol": 17.326, "weekvol": 17.326,
+                         "monthvol": 383.157,
+                         "dayweekmonthvolunits": "kWh",
+                         "mprn": "wxyz",
+                         "supplier": "---",
+                         "price": {"unitrate": 0.03623,
+                                   "standingcharge": 0.168}}}}}

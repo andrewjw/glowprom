@@ -1,0 +1,8 @@
+{"electricitymeter": {"timestamp": "2022-11-07T09:20:08Z",
+   "energy": {"export": {"cumulative": 0.0, "units": "kWh"},
+              "import": {"cumulative": 15254.827, "day": 3.717,
+                         "week": 3.717, "month": 60.439, "units": "kWh",
+                         "mpan": "abcd", "supplier": "Octopus Energy",
+                         "price": {"unitrate": 0.16401,
+                                   "standingcharge": 0.19383}}},
+   "power": {"value": 0.425, "units": "kW"}}}
