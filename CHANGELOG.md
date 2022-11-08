@@ -2,6 +2,13 @@
 
 <!--next-version-placeholder-->
 
+## v0.3.0 (2022-11-08)
+### Feature
+* Add support for local MQTT servers. ([`1bb285c`](https://github.com/andrewjw/glowprom/commit/1bb285c9530df6c30d042765fdc45c7d3da7208b))
+
+### Fix
+* Reconnect if MQTT server is not available at start up. ([`128abcb`](https://github.com/andrewjw/glowprom/commit/128abcb78c7072b09ad246ca49bc398119ed513a))
+
 ## v0.2.6 (2021-03-02)
 ### Fix
 * Use python3 to build release package. ([`92f2070`](https://github.com/andrewjw/glowprom/commit/92f2070b4b0c2433c3fc1733dfa5121d8d93d980))
