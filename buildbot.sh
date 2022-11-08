@@ -14,5 +14,5 @@ if [[ "$BRANCH" == "master" ]]; then
   semantic-release publish
 fi
 if [[ ${BRANCH:0:7} == "heads/v" ]]; then
-    ./docker_push.sh
+    TAG=${BRANCH:7} ./docker_push.sh
 fi
