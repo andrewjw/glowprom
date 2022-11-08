@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.3.2 (2022-11-08)
+### Fix
+* Another fix for the docker image build. ([`b4fae0d`](https://github.com/andrewjw/glowprom/commit/b4fae0d717b8c2ca4153d4ad0562d58c4d1794bb))
+
 ## v0.3.1 (2022-11-08)
 ### Fix
 * Fix pushing docker image. ([`4c86707`](https://github.com/andrewjw/glowprom/commit/4c8670793f00ada625332a6dc5d407f723e01abc))
