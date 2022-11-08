@@ -2,11 +2,8 @@
 
 set -e
 
-# £TRAVIS_TAG begins with a v
-TAG=`echo $TRAVIS_TAG | sed 's/^.//'`
+sudo docker login --username andrewjw --password $DOCKER_TOKEN
 
-docker login --username andrewjw --password $DOCKER_TOKEN
+sudo docker build --build-arg VERSION=$TAG -t andrewjw/glowprom:$TAG .
 
-docker build --build-arg VERSION=$TAG -t andrewjw/glowprom:$TAG .
-
-docker push andrewjw/glowprom:$TAG
+sudo docker push andrewjw/glowprom:$TAG
