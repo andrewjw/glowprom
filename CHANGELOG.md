@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.3.1 (2022-11-08)
+### Fix
+* Fix pushing docker image. ([`4c86707`](https://github.com/andrewjw/glowprom/commit/4c8670793f00ada625332a6dc5d407f723e01abc))
+
 ## v0.3.0 (2022-11-08)
 ### Feature
 * Add support for local MQTT servers. ([`1bb285c`](https://github.com/andrewjw/glowprom/commit/1bb285c9530df6c30d042765fdc45c7d3da7208b))
