@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.3.3 (2022-11-09)
+### Fix
+* Handle exceptions when processing messages and keep running. ([`e4d1922`](https://github.com/andrewjw/glowprom/commit/e4d192209de4b7db8620ec6423a1f69cd8771974))
+
 ## v0.3.2 (2022-11-08)
 ### Fix
 * Another fix for the docker image build. ([`b4fae0d`](https://github.com/andrewjw/glowprom/commit/b4fae0d717b8c2ca4153d4ad0562d58c4d1794bb))
