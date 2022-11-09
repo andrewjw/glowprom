@@ -16,6 +16,8 @@
 
 import functools
 import time
+import traceback
+import sys
 
 import paho.mqtt.client as mqtt
 
@@ -26,12 +28,24 @@ def on_connect(topic, client, userdata, flags, rc):
     client.subscribe(topic)
 
 
+def safe_on_message(on_message):
+    def safe_on_message(client, userdata, msg):
+        try:
+            return on_message(client, userdata, msg)
+        except Exception as e:
+            sys.stderr.write(f"Exception processing message: {msg}\n")
+
+            traceback.print_exc()
+
+    return safe_on_message
+
+
 def connect(args, on_message, retry=True):
     client = mqtt.Client()
     client.on_connect = \
         functools.partial(on_connect,
                           args.topic if args.cloud else "glow/+/+/+")
-    client.on_message = on_message
+    client.on_message = safe_on_message(on_message)
 
     client.username_pw_set(args.user, password=args.passwd)
 

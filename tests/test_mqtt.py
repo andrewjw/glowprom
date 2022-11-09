@@ -33,6 +33,10 @@ def on_message(client, userdata, msg):
     print(str(msg.payload))
 
 
+def on_message_fail(client, userdata, msg):
+    raise KeyError()
+
+
 class TestMQTT(unittest.TestCase):
     @patch("paho.mqtt.client.Client", return_value=MagicMock())
     def test_connect(self, client):
@@ -45,3 +49,14 @@ class TestMQTT(unittest.TestCase):
         clientobj.on_connect(clientobj, None, None, None)
 
         self.assertTrue(clientobj.subscribe.called)
+
+    @patch("paho.mqtt.client.Client", return_value=MagicMock())
+    def test_exception_processing_message(self, client):
+        clientobj = client()
+
+        connect(Arguments(), on_message_fail, retry=False)
+
+        # Check the KeyError is swallowed and we keep running.
+        clientobj.on_message(None, None, "fake message")
+
+        self.assertTrue(True)
