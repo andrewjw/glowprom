@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.3.4 (2022-11-13)
+### Fix
+* Ignore 'read pending' messages. ([`312b129`](https://github.com/andrewjw/glowprom/commit/312b1291c748df4154e63961b54ba7cc61b842de))
+
 ## v0.3.3 (2022-11-09)
 ### Fix
 * Handle exceptions when processing messages and keep running. ([`e4d1922`](https://github.com/andrewjw/glowprom/commit/e4d192209de4b7db8620ec6423a1f69cd8771974))
