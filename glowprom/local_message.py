@@ -83,6 +83,8 @@ def local_message(msg):
 
     if key == "electricitymeter":
         mpan = energy["import"]["mpan"]
+        if mpan.lower() == "read pending":
+            return
         if mpan not in ELECTRIC_DATA:
             ELECTRIC_DATA[mpan] = {}
         ELECTRIC_DATA[mpan]["timestamp"] = timestamp
@@ -111,6 +113,8 @@ def local_message(msg):
 
     elif key == "gasmeter":
         mprn = energy["import"]["mprn"]
+        if mprn.lower() == "read pending":
+            return
         if mprn not in GAS_DATA:
             GAS_DATA[mprn] = {}
         GAS_DATA[mprn]["timestamp"] = timestamp
