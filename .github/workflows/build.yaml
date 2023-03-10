@@ -43,10 +43,10 @@ jobs:
       - name: Submit Coverage
         run: |
           ./run_tests.sh
-          COVERALLS_REPO_TOKEN=$GLOWPROM_COVERALLS_REPO_TOKEN coveralls
+          COVERALLS_REPO_TOKEN={{ secrets.GLOWPROM_COVERALLS_REPO_TOKEN }} coveralls
       - name: Release
         run: |
-          semantic-release publish
+          PYPI_TOKEN={{ secrets.PYPI_TOKEN }} semantic-release publish
           
   docker:
     runs-on: ubuntu-latest
@@ -59,4 +59,4 @@ jobs:
           sudo apt-get install -y docker.io
       - name: Install Docker
         run: |
-          ./docker_push.sh
+          DOCKER_TOKEN={{ secrets.DOCKER_TOKEN }} ./docker_push.sh
