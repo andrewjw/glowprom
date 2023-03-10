@@ -28,7 +28,7 @@ jobs:
 
   release:
     runs-on: ubuntu-latest
-    if: github.repository == 'andrewjw/glowprom' && github.refs == 'refs/heads/master'
+    if: github.repository == 'andrewjw/glowprom' && github.ref == 'refs/heads/master'
     needs: build
     steps:
       - uses: actions/checkout@v3
