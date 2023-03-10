@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.4.0 (2023-03-10)
+### Feature
+* Support multiple python versions. ([`648a85a`](https://github.com/andrewjw/glowprom/commit/648a85a5a72a6b068c9d1d5da19500591588c59e))
+
 ## v0.3.4 (2022-11-13)
 ### Fix
 * Ignore 'read pending' messages. ([`312b129`](https://github.com/andrewjw/glowprom/commit/312b1291c748df4154e63961b54ba7cc61b842de))
