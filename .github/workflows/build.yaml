@@ -47,6 +47,8 @@ jobs:
           COVERALLS_REPO_TOKEN=${{ secrets.GLOWPROM_COVERALLS_REPO_TOKEN }} coveralls
       - name: Release
         run: |
+          git config --global user.email "andrewjwilkinson@gmail.com"
+          git config --global user.name "Andrew Wilkinson"
           PYPI_TOKEN=${{ secrets.PYPI_TOKEN }} semantic-release publish
           
   docker:
