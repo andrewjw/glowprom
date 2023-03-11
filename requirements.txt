@@ -3,3 +3,4 @@ pycodestyle==2.8.0
 coverage==4.5.4
 python-coveralls==2.9.3
 python-semantic-release==7.28.1
+packaging==23.0
