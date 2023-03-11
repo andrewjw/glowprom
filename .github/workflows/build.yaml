@@ -1,6 +1,11 @@
 name: Build And Test
 
-on: [push]
+on:
+  push:
+    branches:
+      - '*'
+    tags:
+      - '*'
 
 jobs:
   build:
@@ -63,4 +68,4 @@ jobs:
           sudo apt-get install -y docker.io
       - name: Install Docker
         run: |
-          DOCKER_TOKEN={{ secrets.DOCKER_TOKEN }} ./docker_push.sh
+          DOCKER_TOKEN=${{ secrets.DOCKER_TOKEN }} ./docker_push.sh
