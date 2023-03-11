@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.4.2 (2023-03-11)
+### Fix
+* Install packaging to allow submission to PyPI ([`9960865`](https://github.com/andrewjw/glowprom/commit/9960865857ff10f54ca2023b8cb642cb9ab2de11))
+
 ## v0.4.1 (2023-03-11)
 ### Fix
 * Set up git for release. ([`811d7e3`](https://github.com/andrewjw/glowprom/commit/811d7e3339eef718382675685aa28cce314bd07a))
