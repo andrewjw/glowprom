@@ -28,6 +28,7 @@ jobs:
 
   release:
     runs-on: ubuntu-latest
+    environment: Production
     if: github.repository == 'andrewjw/glowprom' && github.ref == 'refs/heads/master'
     needs: build
     steps:
@@ -50,6 +51,7 @@ jobs:
           
   docker:
     runs-on: ubuntu-latest
+    environment: Production
     if: github.repository == 'andrewjw/glowprom' && contains(github.ref, 'refs/tags/')
     needs: build
     steps:
