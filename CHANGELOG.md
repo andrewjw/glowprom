@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.4.3 (2023-03-11)
+### Fix
+* Try to trigger on tags. ([`4269999`](https://github.com/andrewjw/glowprom/commit/426999952f33c64fed90925184cd8f70af132429))
+
 ## v0.4.2 (2023-03-11)
 ### Fix
 * Install packaging to allow submission to PyPI ([`9960865`](https://github.com/andrewjw/glowprom/commit/9960865857ff10f54ca2023b8cb642cb9ab2de11))
