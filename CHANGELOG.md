@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.4.1 (2023-03-11)
+### Fix
+* Set up git for release. ([`811d7e3`](https://github.com/andrewjw/glowprom/commit/811d7e3339eef718382675685aa28cce314bd07a))
+
 ## v0.4.0 (2023-03-10)
 ### Feature
 * Support multiple python versions. ([`648a85a`](https://github.com/andrewjw/glowprom/commit/648a85a5a72a6b068c9d1d5da19500591588c59e))
