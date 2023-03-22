@@ -56,7 +56,7 @@ jobs:
           git config --global user.name "Andrew Wilkinson"
           export CURRENT=$(semantic-release print-version --current)
           export VERSION=$(semantic-release print-version)
-          if [ "$CURRENT" -neq "$VERSION" ]; then
+          if [ "$CURRENT" -ne "$VERSION" ]; then
              PYPI_TOKEN=${{ secrets.PYPI_TOKEN }} semantic-release publish
              DOCKER_TOKEN=${{ secrets.DOCKER_TOKEN }} TAG=$VERSION ./docker_push.sh
           fi
