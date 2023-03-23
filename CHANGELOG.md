@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.4.4 (2023-03-23)
+### Fix
+* Use string not equals to test if we're releasing. ([`2b44f0c`](https://github.com/andrewjw/glowprom/commit/2b44f0c90b1ffc50a412d98892e842f3e5ae464f))
+
 ## v0.4.3 (2023-03-11)
 ### Fix
 * Try to trigger on tags. ([`4269999`](https://github.com/andrewjw/glowprom/commit/426999952f33c64fed90925184cd8f70af132429))
