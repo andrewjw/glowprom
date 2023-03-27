@@ -60,7 +60,7 @@ jobs:
           export CURRENT=$(semantic-release print-version --current)
           export VERSION=$(semantic-release print-version)
           if [ "$CURRENT" != "$VERSION" ]; then
-             PYPI_TOKEN=${{ secrets.PYPI_TOKEN }} semantic-release publish
+             GH_TOKEN=${{ GITHUB_TOKEN }} PYPI_TOKEN=${{ secrets.PYPI_TOKEN }} semantic-release publish
              DOCKER_TOKEN=${{ secrets.DOCKER_TOKEN }} TAG=$VERSION ./docker_push.sh
           fi
  
