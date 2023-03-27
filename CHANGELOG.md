@@ -2,6 +2,11 @@
 
 <!--next-version-placeholder-->
 
+## v0.4.5 (2023-03-27)
+### Fix
+* Fix typo. ([`00a0c16`](https://github.com/andrewjw/glowprom/commit/00a0c162cb9ab4bb9e69f970db337321b0049ca7))
+* Set GH_TOKEN to allow GitHub releases to be updated. ([`f77f385`](https://github.com/andrewjw/glowprom/commit/f77f385058e920038fafa9575fc01fc87fc47d66))
+
 ## v0.4.4 (2023-03-23)
 ### Fix
 * Use string not equals to test if we're releasing. ([`2b44f0c`](https://github.com/andrewjw/glowprom/commit/2b44f0c90b1ffc50a412d98892e842f3e5ae464f))
