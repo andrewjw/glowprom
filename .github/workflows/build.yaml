@@ -57,9 +57,8 @@ jobs:
         run: |
           git config --global user.email "andrewjwilkinson@gmail.com"
           git config --global user.name "Andrew Wilkinson"
-          export CURRENT=$(semantic-release print-version --current)
           export VERSION=$(semantic-release print-version)
-          if [ "$CURRENT" != "$VERSION" ]; then
+          if [ ! -z "$VERSION" ]; then
              GH_TOKEN=${{ secrets.GITHUB_TOKEN }} PYPI_TOKEN=${{ secrets.PYPI_TOKEN }} semantic-release publish
              DOCKER_TOKEN=${{ secrets.DOCKER_TOKEN }} TAG=$VERSION ./docker_push.sh
           fi
