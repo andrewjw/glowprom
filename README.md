@@ -1,6 +1,6 @@
 # glowprom
 
-[![Pipeline](https://github.com/andrewjw/glowprom/actions/workflows/build.yml/badge.svg)](https://github.com/andrewjw/glowprom/actions/workflows/build.yml)
+[![Pipeline](https://github.com/andrewjw/glowprom/actions/workflows/build.yaml/badge.svg)](https://github.com/andrewjw/glowprom/actions/workflows/build.yaml)
 [![PyPI version](https://badge.fury.io/py/glowprom.svg)](https://pypi.org/project/glowprom/)
 [![PyPI - Downloads](https://img.shields.io/pypi/dm/glowprom)](https://pypi.org/project/glowprom/)
 [![Docker Image Version (latest semver)](https://img.shields.io/docker/v/andrewjw/prom433)](https://hub.docker.com/r/andrewjw/glowprom)
