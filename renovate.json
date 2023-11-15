@@ -6,6 +6,11 @@
     {
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
       "automerge": true
+    },
+    {
+      "matchUpdateTypes": ["minor"],
+      "matchCategories": ["dockerfile"],
+      "automerge": true
     }
   ]
 }
