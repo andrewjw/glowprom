@@ -4,4 +4,4 @@ coveralls==4.0.1
 python-semantic-release==9.8.3
 packaging==24.1
 wheel==0.43.0
-twine==5.1.0
+twine==5.1.1
