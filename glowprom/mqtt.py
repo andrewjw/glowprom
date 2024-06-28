@@ -22,9 +22,16 @@ import sys
 import paho.mqtt.client as mqtt
 
 
-def on_connect(topic, client, userdata, flags, rc):
-    print("Connected with result code "+str(rc))
+def on_connect(topic: str,
+               client: mqtt.Client,
+               userdata,
+               flags,
+               reason_code,
+               properties):
+    if reason_code > 0:
+        sys.stderr.write(f"Failed to connect to mqtt: {reason_code}")
 
+    print("Successfully connected to mqtt broker.")
     client.subscribe(topic)
 
 
@@ -41,7 +48,7 @@ def safe_on_message(on_message):
 
 
 def connect(args, on_message, retry=True):
-    client = mqtt.Client()
+    client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
     client.on_connect = \
         functools.partial(on_connect,
                           args.topic if args.cloud else "glow/+/+/+")
