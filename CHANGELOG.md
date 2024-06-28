@@ -1,6 +1,80 @@
 # CHANGELOG
 
+## v0.5.1 (2024-06-28)
 
+### Chore
+
+* chore(deps): update dependency paho-mqtt to v2 ([`0faa129`](https://github.com/andrewjw/glowprom/commit/0faa12960efe27aca2bf403607a7b027a8033369))
+
+* chore(deps): update dependency twine to v5.1.1 ([`17a0be1`](https://github.com/andrewjw/glowprom/commit/17a0be15d704341e71b1310b0c3895d8315ccf02))
+
+* chore(deps): update dependency python-semantic-release to v9.8.3 ([`2b500f3`](https://github.com/andrewjw/glowprom/commit/2b500f31f7087e9c7f8182aae21dcf8ac819f0e9))
+
+* chore(deps): update dependency python-semantic-release to v9.8.2 ([`73954ba`](https://github.com/andrewjw/glowprom/commit/73954ba510d81ed33625e30e14fc0224ba7dd3b5))
+
+* chore(deps): update dependency pycodestyle to v2.12.0 ([`67c1d8e`](https://github.com/andrewjw/glowprom/commit/67c1d8e4a118cde17ef37d166e8fd7d8572d5332))
+
+* chore(deps): update dependency packaging to v24.1 ([`9129b7f`](https://github.com/andrewjw/glowprom/commit/9129b7f31f7e10341487a28bdcd06d95020bba9f))
+
+* chore(deps): update dependency python-semantic-release to v9.8.1 ([`f0e9dda`](https://github.com/andrewjw/glowprom/commit/f0e9ddafb3019e733740eb34bbad35175a9f0b9c))
+
+* chore(deps): update dependency python-semantic-release to v9.8.0 ([`bc37ec1`](https://github.com/andrewjw/glowprom/commit/bc37ec1ca92c55d48b84a3f897822a0cb1d7715d))
+
+* chore(deps): update dependency twine to v5.1.0 ([`3b28d9d`](https://github.com/andrewjw/glowprom/commit/3b28d9d83c82a7011f0aeff8da8f87efb72ac2d4))
+
+* chore(deps): update dependency python-semantic-release to v9.7.3 ([`b7ad075`](https://github.com/andrewjw/glowprom/commit/b7ad075eef09acf55d774b3560afc444eb1b3987))
+
+* chore(deps): update dependency coveralls to v4.0.1 ([`6c8ba64`](https://github.com/andrewjw/glowprom/commit/6c8ba64606c48d8399df6361c475e5d995ee6c8f))
+
+* chore(deps): update dependency python-semantic-release to v9.7.2 ([`158e46f`](https://github.com/andrewjw/glowprom/commit/158e46f22fe43e8ed26813259835f9d2b79b4f63))
+
+* chore(deps): update dependency python-semantic-release to v9.7.1 ([`8c88f2a`](https://github.com/andrewjw/glowprom/commit/8c88f2a3dab148857b7954335508eb5243958b21))
+
+* chore(deps): update dependency python-semantic-release to v9.7.0 ([`a878519`](https://github.com/andrewjw/glowprom/commit/a8785196996f1e9325128b5be7384cf8e38d9653))
+
+* chore(deps): update dependency coveralls to v4 (#59)
+
+Co-authored-by: renovate[bot] &lt;29139614+renovate[bot]@users.noreply.github.com&gt; ([`1a8c793`](https://github.com/andrewjw/glowprom/commit/1a8c7933193abb96b14a9e723a3b17afcea4ecfd))
+
+* chore(deps): update dependency python-semantic-release to v9.6.0 ([`61ea02e`](https://github.com/andrewjw/glowprom/commit/61ea02ed27407ebe738d30024de8215fed047c78))
+
+* chore(deps): update dependency python-semantic-release to v9.5.0 ([`276ed50`](https://github.com/andrewjw/glowprom/commit/276ed50ab844161c079e37d8c75e590e1581591a))
+
+* chore(deps): update dependency twine to v5 (#54)
+
+Co-authored-by: renovate[bot] &lt;29139614+renovate[bot]@users.noreply.github.com&gt; ([`f4d0655`](https://github.com/andrewjw/glowprom/commit/f4d065531773e0348eedc711b9160bff440a0d8d))
+
+* chore(deps): update dependency python-semantic-release to v9 (#52)
+
+Co-authored-by: renovate[bot] &lt;29139614+renovate[bot]@users.noreply.github.com&gt; ([`0d8d164`](https://github.com/andrewjw/glowprom/commit/0d8d164ceac34b182ab2b0b6c25db1df18813eab))
+
+* chore(deps): update dependency packaging to v24 (#55)
+
+Co-authored-by: renovate[bot] &lt;29139614+renovate[bot]@users.noreply.github.com&gt; ([`8f0bf0e`](https://github.com/andrewjw/glowprom/commit/8f0bf0e3e68f261b8d054c720d1919361b1af121))
+
+* chore(deps): update dependency wheel to v0.43.0 ([`1f73c16`](https://github.com/andrewjw/glowprom/commit/1f73c16d93e554b7bc86bb35610d68da0d52dda6))
+
+* chore(deps): update actions/setup-python action to v5 (#46)
+
+Co-authored-by: renovate[bot] &lt;29139614+renovate[bot]@users.noreply.github.com&gt; ([`4da0fde`](https://github.com/andrewjw/glowprom/commit/4da0fdeb2866abb91b8b69d098b72cb1037d3d54))
+
+* chore(deps): update dependency python-semantic-release to v8.7.0 ([`6b5e8f6`](https://github.com/andrewjw/glowprom/commit/6b5e8f69792227198a3fdc7ac52fa7b9a53fe55a))
+
+* chore(deps): update dependency python-semantic-release to v8.5.2 ([`b6ca358`](https://github.com/andrewjw/glowprom/commit/b6ca358b9b09a213a780539cc560338839ebd310))
+
+* chore(deps): update dependency python-semantic-release to v8.5.1 ([`cb4345b`](https://github.com/andrewjw/glowprom/commit/cb4345b08de1ffb4b853929ccba1f6e7f137987f))
+
+* chore(deps): update dependency python-semantic-release to v8.5.0 ([`0b26960`](https://github.com/andrewjw/glowprom/commit/0b26960c52ecf88619a19a609d76332bbec5d8c2))
+
+* chore(deps): update dependency python-semantic-release to v8.4.0 ([`176ca04`](https://github.com/andrewjw/glowprom/commit/176ca041cef54c3cd2e1e72a3f47fa554c64d31b))
+
+* chore(deps): update dependency wheel to v0.42.0 ([`712e5c6`](https://github.com/andrewjw/glowprom/commit/712e5c602904c934365adca66c2657ef89ddd6dc))
+
+### Fix
+
+* fix: Fix tests. ([`ab5e0f0`](https://github.com/andrewjw/glowprom/commit/ab5e0f01c24e433289eab1ace088b48c1aa0a5d9))
+
+* fix: Upgrade to support paho-mqtt&gt;=2.0.0. ([`16e4b1f`](https://github.com/andrewjw/glowprom/commit/16e4b1fd4f1bef1b6edcdab9d9107b6332e02cdc))
 
 ## v0.5.0 (2023-11-15)
 
@@ -89,7 +163,6 @@ Co-authored-by: Andrew Wilkinson &lt;andrewjwilkinson@gmail.com&gt; ([`fb5bea6`]
 
 * feat: Support Python 3.12 (#44) ([`04ad7ca`](https://github.com/andrewjw/glowprom/commit/04ad7ca6a833a32bc3819386f58b26721ffb9298))
 
-
 ## v0.4.5 (2023-03-27)
 
 ### Chore
@@ -101,7 +174,6 @@ Co-authored-by: Andrew Wilkinson &lt;andrewjwilkinson@gmail.com&gt; ([`fb5bea6`]
 * fix: Fix typo. ([`00a0c16`](https://github.com/andrewjw/glowprom/commit/00a0c162cb9ab4bb9e69f970db337321b0049ca7))
 
 * fix: Set GH_TOKEN to allow GitHub releases to be updated. ([`f77f385`](https://github.com/andrewjw/glowprom/commit/f77f385058e920038fafa9575fc01fc87fc47d66))
-
 
 ## v0.4.4 (2023-03-23)
 
@@ -115,20 +187,17 @@ Co-authored-by: Andrew Wilkinson &lt;andrewjwilkinson@gmail.com&gt; ([`fb5bea6`]
 
 * fix: Build docker image as part of release process. ([`c3cc0e7`](https://github.com/andrewjw/glowprom/commit/c3cc0e7c3368344620f2c090aaa0d24f285bdc50))
 
-
 ## v0.4.3 (2023-03-11)
 
 ### Fix
 
 * fix: Try to trigger on tags. ([`4269999`](https://github.com/andrewjw/glowprom/commit/426999952f33c64fed90925184cd8f70af132429))
 
-
 ## v0.4.2 (2023-03-11)
 
 ### Fix
 
 * fix: Install packaging to allow submission to PyPI ([`9960865`](https://github.com/andrewjw/glowprom/commit/9960865857ff10f54ca2023b8cb642cb9ab2de11))
-
 
 ## v0.4.1 (2023-03-11)
 
@@ -152,13 +221,11 @@ Co-authored-by: Andrew Wilkinson &lt;andrewjwilkinson@gmail.com&gt; ([`fb5bea6`]
 
 * fix: Set up git for release. ([`811d7e3`](https://github.com/andrewjw/glowprom/commit/811d7e3339eef718382675685aa28cce314bd07a))
 
-
 ## v0.4.0 (2023-03-10)
 
 ### Feature
 
 * feat: Support multiple python versions. ([`648a85a`](https://github.com/andrewjw/glowprom/commit/648a85a5a72a6b068c9d1d5da19500591588c59e))
-
 
 ## v0.3.4 (2022-11-13)
 
@@ -170,13 +237,11 @@ Co-authored-by: Andrew Wilkinson &lt;andrewjwilkinson@gmail.com&gt; ([`fb5bea6`]
 
 * fix: Ignore &#39;read pending&#39; messages. ([`312b129`](https://github.com/andrewjw/glowprom/commit/312b1291c748df4154e63961b54ba7cc61b842de))
 
-
 ## v0.3.3 (2022-11-09)
 
 ### Fix
 
 * fix: Handle exceptions when processing messages and keep running. ([`e4d1922`](https://github.com/andrewjw/glowprom/commit/e4d192209de4b7db8620ec6423a1f69cd8771974))
-
 
 ## v0.3.2 (2022-11-08)
 
@@ -184,13 +249,11 @@ Co-authored-by: Andrew Wilkinson &lt;andrewjwilkinson@gmail.com&gt; ([`fb5bea6`]
 
 * fix: Another fix for the docker image build. ([`b4fae0d`](https://github.com/andrewjw/glowprom/commit/b4fae0d717b8c2ca4153d4ad0562d58c4d1794bb))
 
-
 ## v0.3.1 (2022-11-08)
 
 ### Fix
 
 * fix: Fix pushing docker image. ([`4c86707`](https://github.com/andrewjw/glowprom/commit/4c8670793f00ada625332a6dc5d407f723e01abc))
-
 
 ## v0.3.0 (2022-11-08)
 
@@ -260,7 +323,6 @@ chore(deps): update dependency python-semantic-release to v7.15.1 ([`a2c80eb`](h
 
 chore(deps): update dependency pycodestyle to v2.7.0 ([`5755990`](https://github.com/andrewjw/glowprom/commit/5755990cfe2fbb66c376e9482b90ff70f4fdc5f3))
 
-
 ## v0.2.6 (2021-03-03)
 
 ### Chore
@@ -299,13 +361,11 @@ chore(deps): update dependency pycodestyle to v2.7.0 ([`5755990`](https://github
 
 chore(deps): update dependency python-semantic-release to v7.13.2 ([`80616e0`](https://github.com/andrewjw/glowprom/commit/80616e05cc845f91f30e7236a7a19510644f3bd5))
 
-
 ## v0.2.5 (2020-10-15)
 
 ### Fix
 
 * fix: Handle invalid messages, and print them for investigation. ([`e229b1e`](https://github.com/andrewjw/glowprom/commit/e229b1eaca70bcee6de23ab7d165e56849f9f0df))
-
 
 ## v0.2.4 (2020-10-14)
 
@@ -317,7 +377,6 @@ chore(deps): update dependency python-semantic-release to v7.13.2 ([`80616e0`](h
 
 * fix: Add help and type for prometheus metrics. ([`dea4cd4`](https://github.com/andrewjw/glowprom/commit/dea4cd4310757ef564a0e4ec1ebf7ac4134a0364))
 
-
 ## v0.2.3 (2020-10-13)
 
 ### Chore
@@ -328,13 +387,11 @@ chore(deps): update dependency python-semantic-release to v7.13.2 ([`80616e0`](h
 
 * fix: Fix quotes in prometheus metrics. ([`6384617`](https://github.com/andrewjw/glowprom/commit/638461799bc71eb9d4496fbd76e978034acd6072))
 
-
 ## v0.2.2 (2020-10-13)
 
 ### Fix
 
 * fix: Fix prometheus style, removing initial blank line and simplifying formatting. ([`616c73f`](https://github.com/andrewjw/glowprom/commit/616c73f05e18789c0accc1c11e61a276ae7b1614))
-
 
 ## v0.2.1 (2020-10-09)
 
@@ -344,13 +401,11 @@ chore(deps): update dependency python-semantic-release to v7.13.2 ([`80616e0`](h
 
 * fix: Fix typo when scaling monthly electricity consumption. ([`e69856d`](https://github.com/andrewjw/glowprom/commit/e69856ddcc6ce25079d7839798f8fd07c71acff9))
 
-
 ## v0.2.0 (2020-10-09)
 
 ### Feature
 
 * feat: Convert data to prometheus metrics and serve over http. ([`0f2a5bd`](https://github.com/andrewjw/glowprom/commit/0f2a5bd3c73ae031e0abeec0fcd2ab73bced84b1))
-
 
 ## v0.1.1 (2020-10-01)
 
@@ -358,13 +413,11 @@ chore(deps): update dependency python-semantic-release to v7.13.2 ([`80616e0`](h
 
 * fix: Fix typo in setup.py ([`4801d08`](https://github.com/andrewjw/glowprom/commit/4801d08b4c26776155e574ded1d464b724e8eb83))
 
-
 ## v0.1.0 (2020-09-30)
 
 ### Feature
 
 * feat: Factor out connecting to MQTT and add tests. ([`6e59696`](https://github.com/andrewjw/glowprom/commit/6e59696bd0fd096e90c3551e929f89d844543907))
-
 
 ## v0.0.2 (2020-09-27)
 
