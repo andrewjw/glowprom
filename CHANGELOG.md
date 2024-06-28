@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v0.5.2 (2024-06-28)
+
+### Fix
+
+* fix: Fix handling connection failure to MQTT broker. Get to 100% test coverage. ([`e8cac43`](https://github.com/andrewjw/glowprom/commit/e8cac43aa2fe9ada1de8a6e0cb79e9c7e482aefb))
+
 ## v0.5.1 (2024-06-28)
 
 ### Chore
