@@ -28,11 +28,11 @@ def on_connect(topic: str,
                flags,
                reason_code,
                properties):
-    if reason_code > 0:
+    if reason_code != 0:
         sys.stderr.write(f"Failed to connect to mqtt: {reason_code}")
-
-    print("Successfully connected to mqtt broker.")
-    client.subscribe(topic)
+    else:
+        print("Successfully connected to mqtt broker.")
+        client.subscribe(topic)
 
 
 def safe_on_message(on_message):
@@ -59,7 +59,7 @@ def connect(args, on_message, retry=True):
     while True:
         try:
             client.connect(args.mqtt, args.port, 60)
-        except Exception as e:
+        except Exception as e:  # pragma: no cover
             if not retry:
                 raise
             print(e)

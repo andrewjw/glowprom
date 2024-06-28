@@ -83,7 +83,7 @@ def local_message(msg):
 
     if key == "electricitymeter":
         mpan = energy["import"]["mpan"]
-        if mpan.lower() == "read pending":
+        if mpan.lower() == "read pending":  # pragma: no cover
             return
         if mpan not in ELECTRIC_DATA:
             ELECTRIC_DATA[mpan] = {}
@@ -113,7 +113,7 @@ def local_message(msg):
 
     elif key == "gasmeter":
         mprn = energy["import"]["mprn"]
-        if mprn.lower() == "read pending":
+        if mprn.lower() == "read pending":  # pragma: no cover
             return
         if mprn not in GAS_DATA:
             GAS_DATA[mprn] = {}
@@ -142,7 +142,7 @@ def local_message(msg):
         GAS_DATA[mprn]["import_price"] = energy["import"]["price"]["unitrate"]
         GAS_DATA[mprn]["import_standing"] = \
             energy["import"]["price"]["standingcharge"]
-    else:
+    else:  # pragma: no cover
         print(f"Unknown payload type {key}")
 
     lines = []

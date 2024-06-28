@@ -41,6 +41,13 @@ class TestArguments(unittest.TestCase):
                               "--passwd", "testpassword"])
         self.assertEqual("topic", args.topic)
 
+    def test_mqtt_environ(self):
+        os.environ["GLOWPROM_MQTT"] = "mqtthost"
+        os.environ["GLOWPROM_MQTT_PORT"] = "1884"
+        args = get_arguments([])
+        self.assertEqual("mqtthost", args.mqtt)
+        self.assertEqual("1884", args.port)
+
     def test_bind_without_port(self):
         os.environ["GLOWPROM_USER"] = "testuser"
         os.environ["GLOWPROM_PASSWD"] = "testpassword"
@@ -62,4 +69,9 @@ class TestArguments(unittest.TestCase):
     def test_no_topic(self):
         os.environ["GLOWPROM_USER"] = "testuser"
         os.environ["GLOWPROM_PASSWD"] = "testpasswd"
+        self.assertRaises(InvalidArguments, get_arguments, [])
+
+    def test_topic_local_mqtt(self):
+        os.environ["GLOWPROM_MQTT"] = "mqtthost"
+        os.environ["GLOWPROM_TOPIC"] = "topic"
         self.assertRaises(InvalidArguments, get_arguments, [])

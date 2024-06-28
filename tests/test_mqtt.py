@@ -51,6 +51,20 @@ class TestMQTT(unittest.TestCase):
         self.assertTrue(clientobj.subscribe.called)
 
     @patch("paho.mqtt.client.Client", return_value=MagicMock())
+    def test_connect_failed(self, client):
+        clientobj = client()
+
+        connect(Arguments(), on_message, retry=False)
+
+        self.assertTrue(clientobj.connect.called)
+
+        clientobj.on_connect(clientobj,
+                             None,
+                             None,
+                             "Unsupported protocol version",
+                             None)
+
+    @patch("paho.mqtt.client.Client", return_value=MagicMock())
     def test_exception_processing_message(self, client):
         clientobj = client()
 
