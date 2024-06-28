@@ -46,7 +46,7 @@ class TestMQTT(unittest.TestCase):
 
         self.assertTrue(clientobj.connect.called)
 
-        clientobj.on_connect(clientobj, None, None, None)
+        clientobj.on_connect(clientobj, None, None, 0, None)
 
         self.assertTrue(clientobj.subscribe.called)
 
