@@ -4,7 +4,7 @@ set -e
 
 sudo docker login --username andrewjw --password $DOCKER_TOKEN
 
-sudo docker buildx --use
+sudo docker buildx create --use
 
 sudo docker build --platform linux/amd64,linux/arm64 \
                   --build-arg VERSION=$TAG \
