@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v0.6.1 (2024-07-03)
+
+### Fix
+
+* fix: Fix docker build. ([`ef92c79`](https://github.com/andrewjw/glowprom/commit/ef92c79fbaf430afcf45a2ce71549e8261588432))
+
 ## v0.6.0 (2024-07-03)
 
 ### Feature

@@ -19,4 +19,4 @@ from .exceptions import InvalidArguments
 from .mqtt import connect
 from .server import serve, update_stats
 
-__version__ = "0.6.0"
+__version__ = "0.6.1"
