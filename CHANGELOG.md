@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v0.6.0 (2024-07-03)
+
+### Feature
+
+* feat: Build both amd64 and arm64 images, and push both latest and tag versions. ([`78948de`](https://github.com/andrewjw/glowprom/commit/78948dedf0fdb0616a80e6e565f91c5da71dac18))
+
 ## v0.5.2 (2024-06-28)
 
 ### Fix
