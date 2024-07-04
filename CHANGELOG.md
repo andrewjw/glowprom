@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v0.7.2 (2024-07-04)
+
+### Fix
+
+* fix: Install rust compiler non-interactively. ([`2fc3f77`](https://github.com/andrewjw/glowprom/commit/2fc3f774c48feb5a7e3b619e9152ec3cbfcdef42))
+
 ## v0.7.1 (2024-07-04)
 
 ### Fix
