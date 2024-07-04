@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v0.7.0 (2024-07-04)
+
+### Feature
+
+* feat: Build an arm v7 docker image for Raspberry Pi 3. ([`9dd06b9`](https://github.com/andrewjw/glowprom/commit/9dd06b9cf6c92ef2799ced64ed5b4ed1565b29b8))
+
 ## v0.6.4 (2024-07-03)
 
 ### Fix
