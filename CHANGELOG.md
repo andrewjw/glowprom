@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v0.7.1 (2024-07-04)
+
+### Fix
+
+* fix: Install rust compiler in Docker to allow Python dependencies to build on arm v7. ([`6607555`](https://github.com/andrewjw/glowprom/commit/6607555e415bca7ef8c276cd265eab1a7e82ce41))
+
 ## v0.7.0 (2024-07-04)
 
 ### Feature
