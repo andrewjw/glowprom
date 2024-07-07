@@ -33,6 +33,11 @@ jobs:
       - name: Test
         run: |
           ./run_tests.sh
+      - name: Build Docker
+        run: |
+          python setup.py sdist
+          FILE=`ls dist/glowprom-*.tar.gz | cut -d- -f2`
+          TAG=${FILE%.tar.gz} ./docker_build.sh
 
   release:
     runs-on: ubuntu-latest
@@ -66,5 +71,5 @@ jobs:
             twine check dist/*
             TWINE_USERNAME=__token__ TWINE_PASSWORD=${{ secrets.PYPI_TOKEN }} twine upload dist/*
             GH_TOKEN=${{ secrets.GITHUB_TOKEN }} semantic-release publish
-            DOCKER_TOKEN=${{ secrets.DOCKER_TOKEN }} TAG=$VERSION ./docker_push.sh
+            DOCKER_TOKEN=${{ secrets.DOCKER_TOKEN }} TAG=$VERSION ./docker_build.sh --push
           fi

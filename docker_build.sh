@@ -2,7 +2,7 @@
 
 set -e
 
-sudo docker login --username andrewjw --password $DOCKER_TOKEN
+#sudo docker login --username andrewjw --password $DOCKER_TOKEN
 
 sudo docker buildx create --use
 
