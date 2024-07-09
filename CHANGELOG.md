@@ -1,5 +1,29 @@
 # CHANGELOG
 
+## v0.8.0 (2024-07-09)
+
+### Chore
+
+* chore: Update setup.py to allow installing from a source bundle, and only build the sdist package. ([`fde0a0b`](https://github.com/andrewjw/glowprom/commit/fde0a0bf99227f1da4c1283e87968f40d56d92b4))
+
+* chore(deps): update dependency python-semantic-release to v9.8.5 ([`d7257a8`](https://github.com/andrewjw/glowprom/commit/d7257a8acfba4c1e72e0fc40798f901daec369cc))
+
+* chore(deps): update dependency python-semantic-release to v9.8.4 ([`ceb2028`](https://github.com/andrewjw/glowprom/commit/ceb202833dc732b6729891cdc0fb5e35b12110bb))
+
+### Feature
+
+* feat: Install a local .tar.gz in docker to allow testing and more reliable releases. ([`380a5ff`](https://github.com/andrewjw/glowprom/commit/380a5ffd6671e8317ffde09093e4cefbec19f53b))
+
+### Fix
+
+* fix: Fix docker push by logging in if we&#39;re pushing. ([`6c18e01`](https://github.com/andrewjw/glowprom/commit/6c18e017a347e9fb25767fcf88373c515656a5cc))
+
+* fix: Only build docker once, after all Python versions are tested. ([`1377c07`](https://github.com/andrewjw/glowprom/commit/1377c073441e1f7ec2075614df777aad17a1fe2e))
+
+* fix: Try to find rust compiler. ([`32d438c`](https://github.com/andrewjw/glowprom/commit/32d438c81028a12d305110d3e7dc672f49060113))
+
+* fix: Setup tools has been removed in Python 3.12. ([`8818f91`](https://github.com/andrewjw/glowprom/commit/8818f911ef1078485d308797a4872e3bddca601b))
+
 ## v0.7.2 (2024-07-04)
 
 ### Fix
