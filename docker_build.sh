@@ -2,7 +2,9 @@
 
 set -e
 
-#sudo docker login --username andrewjw --password $DOCKER_TOKEN
+if [ $# -eq 1 ]; then
+  sudo docker login --username andrewjw --password $DOCKER_TOKEN
+fi
 
 sudo docker buildx create --use
 
