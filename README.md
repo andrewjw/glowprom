@@ -105,3 +105,7 @@ glowprom_import_weekvol_Wh{type="gas", mprn="your_mprn"} 17326.0
 # TYPE glowprom_import_monthvol_Wh counter
 glowprom_import_monthvol_Wh{type="gas", mprn="your_mprn"} 383157.0
 ```
+
+# Grafana Dashboard
+
+![Grafana Dashboard](/grafana/dashboard_screenshot.png)
