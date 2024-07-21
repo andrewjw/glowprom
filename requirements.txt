@@ -5,4 +5,4 @@ python-semantic-release==9.8.6
 packaging==24.1
 wheel==0.43.0
 twine==5.1.1
-setuptools==70.3.0
+setuptools==71.1.0
