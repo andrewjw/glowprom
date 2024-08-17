@@ -1,5 +1,29 @@
 # CHANGELOG
 
+## v0.9.0 (2024-08-17)
+
+### Chore
+
+* chore(deps): update dependency pycodestyle to v2.12.1 ([`1a3886e`](https://github.com/andrewjw/glowprom/commit/1a3886eea882d46629c42272461f70e69323cb84))
+
+* chore(deps): update dependency wheel to v0.44.0 ([`4841fcd`](https://github.com/andrewjw/glowprom/commit/4841fcd844dce02fefecdb748d08a42b3d46d7c6))
+
+* chore(deps): update dependency python-semantic-release to v9.8.6 ([`f1b0100`](https://github.com/andrewjw/glowprom/commit/f1b0100835e802bfd7b54d85b0f7766bb9d35109))
+
+* chore: Add time since last update to Grafana dashboard. ([`36b8265`](https://github.com/andrewjw/glowprom/commit/36b82659cfdd71e014b696464a63cd4f934fbfb3))
+
+* chore: Add grafana dashboard (#77) ([`fb7b4c7`](https://github.com/andrewjw/glowprom/commit/fb7b4c731e4253c0e89d72b14c40743daeef242e))
+
+* chore(deps): update dependency setuptools to v70.3.0 ([`fa8c64b`](https://github.com/andrewjw/glowprom/commit/fa8c64b3acef6d4518ca60948e4a204e9cb6410d))
+
+### Feature
+
+* feat: Install a local .tar.gz in docker to allow testing and more reliable releases. ([`4254779`](https://github.com/andrewjw/glowprom/commit/4254779caba571342f3aba65ba96f13f98a220b2))
+
+### Unknown
+
+* * fix: Use piwheels.org and Python 3.11 to fix armv7 build. ([`899f9fd`](https://github.com/andrewjw/glowprom/commit/899f9fd512b99a279d60b1d973ad66bf698ca319))
+
 ## v0.8.0 (2024-07-09)
 
 ### Chore
