@@ -3,6 +3,6 @@ pycodestyle==2.12.1
 coveralls==4.0.1
 python-semantic-release==9.14.0
 packaging==24.2
-wheel==0.45.0
+wheel==0.45.1
 twine==5.1.1
 setuptools==75.3.0
