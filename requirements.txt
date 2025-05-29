@@ -2,7 +2,7 @@ paho-mqtt==2.1.0
 pycodestyle==2.12.1
 coveralls==4.0.1
 python-semantic-release==10.0.2
-packaging==24.2
+packaging==25.0
 wheel==0.45.1
 twine==5.1.1
 setuptools==75.3.0
