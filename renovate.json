@@ -1,15 +1,24 @@
 {
   "extends": [
-    "config:base"
+    "config:recommended"
   ],
   "packageRules": [
     {
-      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "matchUpdateTypes": [
+        "minor",
+        "patch",
+        "pin",
+        "digest"
+      ],
       "automerge": true
     },
     {
-      "matchUpdateTypes": ["minor"],
-      "matchCategories": ["dockerfile"],
+      "matchUpdateTypes": [
+        "minor"
+      ],
+      "matchCategories": [
+        "dockerfile"
+      ],
       "automerge": true
     }
   ]
