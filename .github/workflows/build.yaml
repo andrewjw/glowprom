@@ -39,6 +39,18 @@ jobs:
         with:
           format: cobertura
           file: coverage.xml
+          parallel: true
+          flag-name: Python-${{ matrix.python-version }}
+
+  finish:
+    needs: build
+    if: ${{ always() }}
+    runs-on: ubuntu-latest
+    steps:
+    - name: Coveralls Finished
+      uses: coverallsapp/github-action@v2
+      with:
+        parallel-finished: true
 
   docker:
     runs-on: ubuntu-latest
