@@ -1,6 +1,6 @@
 paho-mqtt==2.1.0
 pycodestyle==2.14.0
-coverage==7.10.6
+coverage==7.10.7
 python-semantic-release==10.4.1
 packaging==25.0
 wheel==0.45.1
