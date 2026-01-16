@@ -22,12 +22,9 @@ import sys
 import paho.mqtt.client as mqtt
 
 
-def on_connect(topic: str,
-               client: mqtt.Client,
-               userdata,
-               flags,
-               reason_code,
-               properties):
+def on_connect(
+    topic: str, client: mqtt.Client, userdata, flags, reason_code, properties
+):
     if reason_code != 0:
         sys.stderr.write(f"Failed to connect to mqtt: {reason_code}")
     else:
@@ -49,9 +46,9 @@ def safe_on_message(on_message):
 
 def connect(args, on_message, retry=True):
     client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
-    client.on_connect = \
-        functools.partial(on_connect,
-                          args.topic if args.cloud else "glow/+/+/+")
+    client.on_connect = functools.partial(
+        on_connect, args.topic if args.cloud else "glow/+/+/+"
+    )
     client.on_message = safe_on_message(on_message)
 
     client.username_pw_set(args.user, password=args.passwd)

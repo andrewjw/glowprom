@@ -29,7 +29,7 @@ jobs:
           pip install -r requirements.txt
       - name: Code Style
         run: |
-          ./code_style.sh
+          black --check bin/ glowprom/ tests/
       - name: Test
         run: |
           ./run_tests.sh

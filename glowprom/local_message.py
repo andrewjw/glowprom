@@ -39,28 +39,22 @@ import json
 #                         'price': {'unitrate': 0.03623,
 #                                   'standingcharge': 0.168}}}}}
 METRIC = "glowprom_{metric}"
-METRIC_KEYS = "{{type=\"{type}\", {idname}=\"{idvalue}\"}}"
+METRIC_KEYS = '{{type="{type}", {idname}="{idvalue}"}}'
 
 METRIC_METADATA = {
     "timestamp": ("The time the last update was received.", "counter", False),
-    "export_cumulative": ("The total amount of energy exported.",
-                          "counter", True),
-    "import_cumulative": ("The total amount of energy imported.",
-                          "counter", True),
+    "export_cumulative": ("The total amount of energy exported.", "counter", True),
+    "import_cumulative": ("The total amount of energy imported.", "counter", True),
     "import_day": ("The amount of energy imported today.", "gauge", True),
     "import_week": ("The amount of energy imported this week.", "gauge", True),
-    "import_month": ("The amount of energy imported this month.",
-                     "gauge", True),
+    "import_month": ("The amount of energy imported this month.", "gauge", True),
     "import_price": ("The current unit price for energy.", "gauge", False),
     "import_standing": ("The standing charge for energy.", "gauge", False),
     "power": ("The current amount of power being used.", "gauge", True),
-    "import_cumulativevol": ("The total volume of gas imported.",
-                             "counter", True),
+    "import_cumulativevol": ("The total volume of gas imported.", "counter", True),
     "import_dayvol": ("The volume of gas imported today.", "counter", True),
-    "import_weekvol": ("The volume of gas imported this week.",
-                       "counter", True),
-    "import_monthvol": ("The volume of gas imported this month.",
-                        "counter", True)
+    "import_weekvol": ("The volume of gas imported this week.", "counter", True),
+    "import_monthvol": ("The volume of gas imported this month.", "counter", True),
 }
 
 METRIC_HELP = "# HELP {metric} {help}"
@@ -78,8 +72,9 @@ def local_message(msg):
     key = list(payload.keys())[0]
     energy = payload[key]["energy"]
 
-    timestamp = datetime.datetime.strptime(payload[key]["timestamp"],
-                                           r"%Y-%m-%dT%H:%M:%SZ").timestamp()
+    timestamp = datetime.datetime.strptime(
+        payload[key]["timestamp"], r"%Y-%m-%dT%H:%M:%SZ"
+    ).timestamp()
 
     if key == "electricitymeter":
         mpan = energy["import"]["mpan"]
@@ -88,28 +83,28 @@ def local_message(msg):
         if mpan not in ELECTRIC_DATA:
             ELECTRIC_DATA[mpan] = {}
         ELECTRIC_DATA[mpan]["timestamp"] = timestamp
-        ELECTRIC_DATA[mpan]["export_cumulative"] = \
-            convert_units(energy["export"]["cumulative"],
-                          energy["export"]["units"])
-        ELECTRIC_DATA[mpan]["import_cumulative"] = \
-            convert_units(energy["import"]["cumulative"],
-                          energy["import"]["units"])
-        ELECTRIC_DATA[mpan]["import_day"] = \
-            convert_units(energy["import"]["day"],
-                          energy["import"]["units"])
-        ELECTRIC_DATA[mpan]["import_week"] = \
-            convert_units(energy["import"]["week"],
-                          energy["import"]["units"])
-        ELECTRIC_DATA[mpan]["import_month"] = \
-            convert_units(energy["import"]["month"],
-                          energy["import"]["units"])
-        ELECTRIC_DATA[mpan]["import_price"] = \
-            energy["import"]["price"]["unitrate"]
-        ELECTRIC_DATA[mpan]["import_standing"] = \
-            energy["import"]["price"]["standingcharge"]
-        ELECTRIC_DATA[mpan]["power"] = \
-            convert_units(payload[key]["power"]["value"],
-                          payload[key]["power"]["units"])
+        ELECTRIC_DATA[mpan]["export_cumulative"] = convert_units(
+            energy["export"]["cumulative"], energy["export"]["units"]
+        )
+        ELECTRIC_DATA[mpan]["import_cumulative"] = convert_units(
+            energy["import"]["cumulative"], energy["import"]["units"]
+        )
+        ELECTRIC_DATA[mpan]["import_day"] = convert_units(
+            energy["import"]["day"], energy["import"]["units"]
+        )
+        ELECTRIC_DATA[mpan]["import_week"] = convert_units(
+            energy["import"]["week"], energy["import"]["units"]
+        )
+        ELECTRIC_DATA[mpan]["import_month"] = convert_units(
+            energy["import"]["month"], energy["import"]["units"]
+        )
+        ELECTRIC_DATA[mpan]["import_price"] = energy["import"]["price"]["unitrate"]
+        ELECTRIC_DATA[mpan]["import_standing"] = energy["import"]["price"][
+            "standingcharge"
+        ]
+        ELECTRIC_DATA[mpan]["power"] = convert_units(
+            payload[key]["power"]["value"], payload[key]["power"]["units"]
+        )
 
     elif key == "gasmeter":
         mprn = energy["import"]["mprn"]
@@ -118,30 +113,32 @@ def local_message(msg):
         if mprn not in GAS_DATA:
             GAS_DATA[mprn] = {}
         GAS_DATA[mprn]["timestamp"] = timestamp
-        GAS_DATA[mprn]["import_cumulative"] = \
-            convert_units(energy["import"]["cumulative"],
-                          energy["import"]["units"])
-        GAS_DATA[mprn]["import_day"] = \
-            convert_units(energy["import"]["day"], energy["import"]["units"])
-        GAS_DATA[mprn]["import_week"] = \
-            convert_units(energy["import"]["week"], energy["import"]["units"])
-        GAS_DATA[mprn]["import_month"] = \
-            convert_units(energy["import"]["month"], energy["import"]["units"])
-        GAS_DATA[mprn]["import_cumulativevol"] = \
-            convert_units(energy["import"]["cumulativevol"],
-                          energy["import"]["cumulativevolunits"])
-        GAS_DATA[mprn]["import_dayvol"] = \
-            convert_units(energy["import"]["dayvol"],
-                          energy["import"]["dayweekmonthvolunits"])
-        GAS_DATA[mprn]["import_weekvol"] = \
-            convert_units(energy["import"]["weekvol"],
-                          energy["import"]["dayweekmonthvolunits"])
-        GAS_DATA[mprn]["import_monthvol"] = \
-            convert_units(energy["import"]["monthvol"],
-                          energy["import"]["dayweekmonthvolunits"])
+        GAS_DATA[mprn]["import_cumulative"] = convert_units(
+            energy["import"]["cumulative"], energy["import"]["units"]
+        )
+        GAS_DATA[mprn]["import_day"] = convert_units(
+            energy["import"]["day"], energy["import"]["units"]
+        )
+        GAS_DATA[mprn]["import_week"] = convert_units(
+            energy["import"]["week"], energy["import"]["units"]
+        )
+        GAS_DATA[mprn]["import_month"] = convert_units(
+            energy["import"]["month"], energy["import"]["units"]
+        )
+        GAS_DATA[mprn]["import_cumulativevol"] = convert_units(
+            energy["import"]["cumulativevol"], energy["import"]["cumulativevolunits"]
+        )
+        GAS_DATA[mprn]["import_dayvol"] = convert_units(
+            energy["import"]["dayvol"], energy["import"]["dayweekmonthvolunits"]
+        )
+        GAS_DATA[mprn]["import_weekvol"] = convert_units(
+            energy["import"]["weekvol"], energy["import"]["dayweekmonthvolunits"]
+        )
+        GAS_DATA[mprn]["import_monthvol"] = convert_units(
+            energy["import"]["monthvol"], energy["import"]["dayweekmonthvolunits"]
+        )
         GAS_DATA[mprn]["import_price"] = energy["import"]["price"]["unitrate"]
-        GAS_DATA[mprn]["import_standing"] = \
-            energy["import"]["price"]["standingcharge"]
+        GAS_DATA[mprn]["import_standing"] = energy["import"]["price"]["standingcharge"]
     else:  # pragma: no cover
         print(f"Unknown payload type {key}")
 
@@ -152,44 +149,41 @@ def local_message(msg):
         if has_units:
             for unit in get_units_for_metric(metric):
                 metric_name = METRIC.format(metric=metric) + "_" + unit
-                lines.append(METRIC_HELP.format(metric=metric_name,
-                                                help=help))
-                lines.append(METRIC_TYPE.format(metric=metric_name,
-                                                type=metric_type))
+                lines.append(METRIC_HELP.format(metric=metric_name, help=help))
+                lines.append(METRIC_TYPE.format(metric=metric_name, type=metric_type))
         else:
             metric_name = METRIC.format(metric=metric)
-            lines.append(METRIC_HELP.format(metric=metric_name,
-                                            help=help))
-            lines.append(METRIC_TYPE.format(metric=metric_name,
-                                            type=metric_type))
+            lines.append(METRIC_HELP.format(metric=metric_name, help=help))
+            lines.append(METRIC_TYPE.format(metric=metric_name, type=metric_type))
 
         for mpan in ELECTRIC_DATA:
             if metric in ELECTRIC_DATA[mpan]:
                 if has_units:
                     value = ELECTRIC_DATA[mpan][metric][0]
-                    metric_name = \
-                        METRIC.format(metric=metric) + "_" \
+                    metric_name = (
+                        METRIC.format(metric=metric)
+                        + "_"
                         + ELECTRIC_DATA[mpan][metric][1]
+                    )
                 else:
                     value = ELECTRIC_DATA[mpan][metric]
                     metric_name = METRIC.format(metric=metric)
 
-                keys = METRIC_KEYS.format(type="electric", idname="mpan",
-                                          idvalue=mpan)
+                keys = METRIC_KEYS.format(type="electric", idname="mpan", idvalue=mpan)
                 lines.append(f"{metric_name}{keys} {value}")
 
         for mprn in GAS_DATA:
             if metric in GAS_DATA[mprn]:
                 if has_units:
                     value = GAS_DATA[mprn][metric][0]
-                    metric_name = METRIC.format(metric=metric) + "_" \
-                        + GAS_DATA[mprn][metric][1]
+                    metric_name = (
+                        METRIC.format(metric=metric) + "_" + GAS_DATA[mprn][metric][1]
+                    )
                 else:
                     value = GAS_DATA[mprn][metric]
                     metric_name = METRIC.format(metric=metric)
 
-                keys = METRIC_KEYS.format(type="gas", idname="mprn",
-                                          idvalue=mprn)
+                keys = METRIC_KEYS.format(type="gas", idname="mprn", idvalue=mprn)
                 lines.append(f"{metric_name}{keys} {value}")
 
         lines.append("")

@@ -65,8 +65,7 @@ class TestServer(unittest.TestCase):
         handler.do_GET()
 
         handler.wfile.seek(0)
-        self.assertTrue(
-            "consumption" in handler.wfile.read().decode("utf8"))
+        self.assertTrue("consumption" in handler.wfile.read().decode("utf8"))
 
     def test_metrics_before_update(self):
         handler = MockHandler()

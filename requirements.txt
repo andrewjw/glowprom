@@ -1,5 +1,5 @@
 paho-mqtt==2.1.0
-pycodestyle==2.14.0
+black==25.12.0
 coverage==7.10.7
 python-semantic-release==10.5.3
 packaging==25.0

@@ -22,25 +22,50 @@ from .exceptions import InvalidArguments
 DEFAULT_MQTT = "glowmqtt.energyhive.com"
 
 parser = argparse.ArgumentParser(
-    description='Listens to meter reports from Glow (glowmarkt.com) MQTT and'
-    + ' exposes them as prometheus metrics')
-parser.add_argument('--mqtt', type=str, nargs='?', default=DEFAULT_MQTT,
-                    help='the mqtt server to connect to. leave unset for the '
-                    + 'Glow cloud MQTT. (can also be set with $GLOWPROM_MQTT)')
-parser.add_argument('--port', type=int, nargs='?', default=1883,
-                    help='the mqtt port to connect to. (can also be set with '
-                    + '$GLOWPROM_MQTT_PORT)')
-parser.add_argument('--user', type=str, nargs='?',
-                    help='the user name to use (can also be set with '
-                    + '$GLOWPROM_USER)')
-parser.add_argument('--passwd', type=str, nargs='?',
-                    help='the password to use (can also be set with '
-                    + '$GLOWPROM_PASSWD)')
-parser.add_argument('--topic', type=str, nargs='?',
-                    help='the topic to listen on for cloud MQTT'
-                    + ' (can also be set with $GLOWPROM_TOPIC)')
-parser.add_argument('--bind', type=str, nargs='?', default="0.0.0.0:9100",
-                    help='the ip address and port to bind to')
+    description="Listens to meter reports from Glow (glowmarkt.com) MQTT and"
+    + " exposes them as prometheus metrics"
+)
+parser.add_argument(
+    "--mqtt",
+    type=str,
+    nargs="?",
+    default=DEFAULT_MQTT,
+    help="the mqtt server to connect to. leave unset for the "
+    + "Glow cloud MQTT. (can also be set with $GLOWPROM_MQTT)",
+)
+parser.add_argument(
+    "--port",
+    type=int,
+    nargs="?",
+    default=1883,
+    help="the mqtt port to connect to. (can also be set with " + "$GLOWPROM_MQTT_PORT)",
+)
+parser.add_argument(
+    "--user",
+    type=str,
+    nargs="?",
+    help="the user name to use (can also be set with " + "$GLOWPROM_USER)",
+)
+parser.add_argument(
+    "--passwd",
+    type=str,
+    nargs="?",
+    help="the password to use (can also be set with " + "$GLOWPROM_PASSWD)",
+)
+parser.add_argument(
+    "--topic",
+    type=str,
+    nargs="?",
+    help="the topic to listen on for cloud MQTT"
+    + " (can also be set with $GLOWPROM_TOPIC)",
+)
+parser.add_argument(
+    "--bind",
+    type=str,
+    nargs="?",
+    default="0.0.0.0:9100",
+    help="the ip address and port to bind to",
+)
 
 
 def get_arguments(args):
@@ -59,17 +84,19 @@ def get_arguments(args):
     args.cloud = args.mqtt == DEFAULT_MQTT
 
     if args.cloud and args.user is None:
-        raise InvalidArguments("No username supplied. Either use --user "
-                               + "or set $GLOWPROM_USER")
-    if args.cloud and args.passwd is None:
-        raise InvalidArguments("No password supplied. Either use --passwd "
-                               + "or set $GLOWPROM_PASSWD")
-    if args.cloud and args.topic is None:
-        raise InvalidArguments("No topic supplied. Either use --topic "
-                               + "or set $GLOWPROM_TOPIC")
-    if not args.cloud and args.topic is not None:
         raise InvalidArguments(
-            "A topic should only be supplied when using cloud MQTT.")
+            "No username supplied. Either use --user " + "or set $GLOWPROM_USER"
+        )
+    if args.cloud and args.passwd is None:
+        raise InvalidArguments(
+            "No password supplied. Either use --passwd " + "or set $GLOWPROM_PASSWD"
+        )
+    if args.cloud and args.topic is None:
+        raise InvalidArguments(
+            "No topic supplied. Either use --topic " + "or set $GLOWPROM_TOPIC"
+        )
+    if not args.cloud and args.topic is not None:
+        raise InvalidArguments("A topic should only be supplied when using cloud MQTT.")
 
     if ":" not in args.bind:
         args.bind = (args.bind, 9100)

@@ -33,11 +33,9 @@ class TestCloudMessage(unittest.TestCase):
         prom = cloud_message(MockMessage(MESSAGE_TEXT))
 
         self.assertIn(
-            "glowprom_consumption{type=\"electricity\",period=\"daily\"} "
-            + "7.971", prom)
-        self.assertIn(
-            "glowprom_consumption{type=\"gas\",period=\"daily\"} 39.452",
-            prom)
+            'glowprom_consumption{type="electricity",period="daily"} ' + "7.971", prom
+        )
+        self.assertIn('glowprom_consumption{type="gas",period="daily"} 39.452', prom)
 
     def test_missing_electricity(self):
         data = json.loads(MESSAGE_TEXT)
@@ -45,10 +43,9 @@ class TestCloudMessage(unittest.TestCase):
         prom = cloud_message(MockMessage(json.dumps(data)))
 
         self.assertNotIn(
-            "glowprom_consumption{type=\"electricity\",period=\"daily\"} "
-            + "7.971", prom)
-        self.assertIn(
-            "glowprom_consumption{type=\"gas\",period=\"daily\"} 39.452", prom)
+            'glowprom_consumption{type="electricity",period="daily"} ' + "7.971", prom
+        )
+        self.assertIn('glowprom_consumption{type="gas",period="daily"} 39.452', prom)
 
     def test_missing_gas(self):
         data = json.loads(MESSAGE_TEXT)
@@ -56,7 +53,6 @@ class TestCloudMessage(unittest.TestCase):
         prom = cloud_message(MockMessage(json.dumps(data)))
 
         self.assertIn(
-            "glowprom_consumption{type=\"electricity\",period=\"daily\"} "
-            + "7.971", prom)
-        self.assertNotIn(
-            "glowprom_consumption{type=\"gas\",period=\"daily\"} 39.452", prom)
+            'glowprom_consumption{type="electricity",period="daily"} ' + "7.971", prom
+        )
+        self.assertNotIn('glowprom_consumption{type="gas",period="daily"} 39.452', prom)
