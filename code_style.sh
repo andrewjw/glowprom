@@ -2,4 +2,4 @@
 
 set -e
 
-pycodestyle bin/ glowprom/ tests/
+black bin/ glowprom/ tests/

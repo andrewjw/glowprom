@@ -20,8 +20,7 @@ import unittest
 from glowprom.local_message import local_message
 
 
-ELECTRIC_MESSAGE_TEXT = open("tests/test_local_electric_message.txt", "rb") \
-                        .read()
+ELECTRIC_MESSAGE_TEXT = open("tests/test_local_electric_message.txt", "rb").read()
 GAS_MESSAGE_TEXT = open("tests/test_local_gas_message.txt", "rb").read()
 
 
@@ -35,12 +34,16 @@ class TestLocalMessage(unittest.TestCase):
         prom = local_message(MockMessage(ELECTRIC_MESSAGE_TEXT))
 
         self.assertIn(
-            "glowprom_import_cumulative_Wh{type=\"electric\", mpan=\"abcd\"}"
-            + " 15254827.0", prom)
+            'glowprom_import_cumulative_Wh{type="electric", mpan="abcd"}'
+            + " 15254827.0",
+            prom,
+        )
 
     def test_gas_message(self):
         prom = local_message(MockMessage(GAS_MESSAGE_TEXT))
 
         self.assertIn(
-            "glowprom_import_cumulative_Wh{type=\"gas\", mprn=\"wxyz\"}"
-            + " 66589570.00000001", prom)
+            'glowprom_import_cumulative_Wh{type="gas", mprn="wxyz"}'
+            + " 66589570.00000001",
+            prom,
+        )

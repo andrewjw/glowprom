@@ -37,8 +37,7 @@ class TestArguments(unittest.TestCase):
 
     def test_passwd_environ(self):
         os.environ["GLOWPROM_TOPIC"] = "topic"
-        args = get_arguments(["--user", "testuser",
-                              "--passwd", "testpassword"])
+        args = get_arguments(["--user", "testuser", "--passwd", "testpassword"])
         self.assertEqual("topic", args.topic)
 
     def test_mqtt_environ(self):

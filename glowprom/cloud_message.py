@@ -59,11 +59,10 @@ import json
 #   - 01: ProviderName (string)
 
 
-METRIC = "glowprom_consumption{{type=\"{type}\",period=\"{period}\"}} {value}"
-METER = "glowprom_meter{{type=\"{type}\"}} {value}"
+METRIC = 'glowprom_consumption{{type="{type}",period="{period}"}} {value}'
+METER = 'glowprom_meter{{type="{type}"}} {value}'
 
-METRIC_HELP = "# HELP glowprom_consumption" \
-            + " The consumption over the given period."
+METRIC_HELP = "# HELP glowprom_consumption" + " The consumption over the given period."
 METRIC_TYPE = "# TYPE glowprom_consumption counter"
 
 METER_HELP = "# HELP glowprom_meter The meter reading."
@@ -90,27 +89,30 @@ def cloud_message(msg):
         elec_divisor = float(int(elecMtr["03"]["02"], 16))
         elec_meter = int(elecMtr["00"]["00"], 16)
 
-        elec_daily_consumption = elec_daily_consumption * \
-            elec_multiplier / elec_divisor
-        elec_weekly_consumption = elec_weekly_consumption * \
-            elec_multiplier / elec_divisor
-        elec_monthly_consumption = elec_monthly_consumption * \
-            elec_multiplier / elec_divisor
+        elec_daily_consumption = elec_daily_consumption * elec_multiplier / elec_divisor
+        elec_weekly_consumption = (
+            elec_weekly_consumption * elec_multiplier / elec_divisor
+        )
+        elec_monthly_consumption = (
+            elec_monthly_consumption * elec_multiplier / elec_divisor
+        )
         electricity_meter = elec_meter * elec_multiplier / elec_divisor
 
-        metrics.extend([
-            METRIC.format(type="electricity",
-                          period="daily",
-                          value=elec_daily_consumption),
-            METRIC.format(type="electricity",
-                          period="weekly",
-                          value=elec_weekly_consumption),
-            METRIC.format(type="electricity",
-                          period="monthly",
-                          value=elec_monthly_consumption)])
+        metrics.extend(
+            [
+                METRIC.format(
+                    type="electricity", period="daily", value=elec_daily_consumption
+                ),
+                METRIC.format(
+                    type="electricity", period="weekly", value=elec_weekly_consumption
+                ),
+                METRIC.format(
+                    type="electricity", period="monthly", value=elec_monthly_consumption
+                ),
+            ]
+        )
 
-        meters.append(METER.format(type="electricity",
-                                   value=electricity_meter))
+        meters.append(METER.format(type="electricity", value=electricity_meter))
 
     gasMtr = payload["gasMtr"]["0702"]
 
@@ -125,26 +127,25 @@ def cloud_message(msg):
         gas_divisor = float(int(gasMtr["03"]["02"], 16))
         gas_meter = int(gasMtr["00"]["00"], 16)
 
-        gas_daily_consumption = gas_daily_consumption * \
-            gas_multiplier / gas_divisor
-        gas_weekly_consumption = gas_weekly_consumption * \
-            gas_multiplier / gas_divisor
-        gas_monthly_consumption = gas_monthly_consumption * \
-            gas_multiplier / gas_divisor
+        gas_daily_consumption = gas_daily_consumption * gas_multiplier / gas_divisor
+        gas_weekly_consumption = gas_weekly_consumption * gas_multiplier / gas_divisor
+        gas_monthly_consumption = gas_monthly_consumption * gas_multiplier / gas_divisor
         gas_meter = gas_meter * gas_multiplier / gas_divisor
 
-        metrics.extend([
-            METRIC.format(type="gas",
-                          period="daily",
-                          value=gas_daily_consumption),
-            METRIC.format(type="gas",
-                          period="weekly",
-                          value=gas_weekly_consumption),
-            METRIC.format(type="gas",
-                          period="monthly",
-                          value=gas_monthly_consumption)])
+        metrics.extend(
+            [
+                METRIC.format(type="gas", period="daily", value=gas_daily_consumption),
+                METRIC.format(
+                    type="gas", period="weekly", value=gas_weekly_consumption
+                ),
+                METRIC.format(
+                    type="gas", period="monthly", value=gas_monthly_consumption
+                ),
+            ]
+        )
 
         meters.append(METER.format(type="gas", value=gas_meter))
 
-    return "\n".join([METRIC_HELP, METRIC_TYPE] + metrics + [
-        METER_HELP, METER_TYPE] + meters)
+    return "\n".join(
+        [METRIC_HELP, METRIC_TYPE] + metrics + [METER_HELP, METER_TYPE] + meters
+    )
