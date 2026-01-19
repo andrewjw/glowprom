@@ -22,6 +22,7 @@ from glowprom.local_message import local_message
 
 ELECTRIC_MESSAGE_TEXT = open("tests/test_local_electric_message.txt", "rb").read()
 GAS_MESSAGE_TEXT = open("tests/test_local_gas_message.txt", "rb").read()
+STATE_MESSAGE_TEXT = open("tests/test_local_state_message.txt", "rb").read()
 
 
 class MockMessage:
@@ -47,3 +48,13 @@ class TestLocalMessage(unittest.TestCase):
             + " 66589570.00000001",
             prom,
         )
+
+    def test_state_message(self):
+        prom = local_message(MockMessage(STATE_MESSAGE_TEXT))
+
+        self.assertIn(
+            'glowprom_versions{software="v2.0.2",hardware="GLOW-IHD-02-1v4-SMETS2",smetsversion="SMETS2",zigbee="1.2.5"} 1',
+            prom,
+        )
+        self.assertIn("glowprom_rssi -88", prom)
+        self.assertIn("glowprom_lqi 48", prom)

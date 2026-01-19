@@ -21,10 +21,12 @@ import sys
 
 import tests
 
+
 def suite():
     """Test suite"""
 
     return unittest.defaultTestLoader.loadTestsFromModule(tests)
+
 
 if __name__ == "__main__":
     RESULT = unittest.TextTestRunner(verbosity=2).run(suite())

@@ -38,6 +38,12 @@ import json
 #                         'supplier': '---',
 #                         'price': {'unitrate': 0.03623,
 #                                   'standingcharge': 0.168}}}}}
+
+# {'timestamp': '2026-01-19T20:55:38Z', 'software': 'v2.0.2',
+# 'hardware': 'GLOW-IHD-02-1v4-SMETS2', 'wifistamac': 'BCDDC2C6A91C',
+# 'smetsversion': 'SMETS2', 'eui': '70:B3:D5:21:E0:00:8D:10',
+# 'zigbee': '1.2.5', 'han': {'rssi': -88, 'status': 'joined', 'lqi': 48}}
+
 METRIC = "glowprom_{metric}"
 METRIC_KEYS = '{{type="{type}", {idname}="{idvalue}"}}'
 
@@ -62,6 +68,10 @@ METRIC_TYPE = "# TYPE {metric} {type}"
 
 ELECTRIC_DATA = {}
 GAS_DATA = {}
+STATE_TIMESTAMP = None
+VERSIONS = {}
+RSSI = None
+LQI = None
 
 
 def local_message(msg):
@@ -69,20 +79,17 @@ def local_message(msg):
     # # https://gist.github.com/ndfred/b373eeafc4f5b0870c1b8857041289a9
     payload = json.loads(msg.payload)
 
-    key = list(payload.keys())[0]
-    energy = payload[key]["energy"]
+    if "electricitymeter" in payload:
+        energy = payload["electricitymeter"]["energy"]
 
-    timestamp = datetime.datetime.strptime(
-        payload[key]["timestamp"], r"%Y-%m-%dT%H:%M:%SZ"
-    ).timestamp()
-
-    if key == "electricitymeter":
         mpan = energy["import"]["mpan"]
         if mpan.lower() == "read pending":  # pragma: no cover
             return
         if mpan not in ELECTRIC_DATA:
             ELECTRIC_DATA[mpan] = {}
-        ELECTRIC_DATA[mpan]["timestamp"] = timestamp
+        ELECTRIC_DATA[mpan]["timestamp"] = datetime.datetime.strptime(
+            payload["electricitymeter"]["timestamp"], r"%Y-%m-%dT%H:%M:%SZ"
+        ).timestamp()
         ELECTRIC_DATA[mpan]["export_cumulative"] = convert_units(
             energy["export"]["cumulative"], energy["export"]["units"]
         )
@@ -103,16 +110,20 @@ def local_message(msg):
             "standingcharge"
         ]
         ELECTRIC_DATA[mpan]["power"] = convert_units(
-            payload[key]["power"]["value"], payload[key]["power"]["units"]
+            payload["electricitymeter"]["power"]["value"],
+            payload["electricitymeter"]["power"]["units"],
         )
 
-    elif key == "gasmeter":
+    elif "gasmeter" in payload:
+        energy = payload["gasmeter"]["energy"]
         mprn = energy["import"]["mprn"]
         if mprn.lower() == "read pending":  # pragma: no cover
             return
         if mprn not in GAS_DATA:
             GAS_DATA[mprn] = {}
-        GAS_DATA[mprn]["timestamp"] = timestamp
+        GAS_DATA[mprn]["timestamp"] = datetime.datetime.strptime(
+            payload["gasmeter"]["timestamp"], r"%Y-%m-%dT%H:%M:%SZ"
+        ).timestamp()
         GAS_DATA[mprn]["import_cumulative"] = convert_units(
             energy["import"]["cumulative"], energy["import"]["units"]
         )
@@ -139,6 +150,17 @@ def local_message(msg):
         )
         GAS_DATA[mprn]["import_price"] = energy["import"]["price"]["unitrate"]
         GAS_DATA[mprn]["import_standing"] = energy["import"]["price"]["standingcharge"]
+    elif "han" in payload:
+        global RSSI, LQI, STATE_TIMESTAMP
+        STATE_TIMESTAMP = datetime.datetime.strptime(
+            payload["timestamp"], r"%Y-%m-%dT%H:%M:%SZ"
+        ).timestamp()
+        VERSIONS["software"] = payload["software"]
+        VERSIONS["hardware"] = payload["hardware"]
+        VERSIONS["smetsversion"] = payload["smetsversion"]
+        VERSIONS["zigbee"] = payload["zigbee"]
+        RSSI = payload["han"]["rssi"]
+        LQI = payload["han"]["lqi"]
     else:  # pragma: no cover
         print(f"Unknown payload type {key}")
 
@@ -187,6 +209,58 @@ def local_message(msg):
                 lines.append(f"{metric_name}{keys} {value}")
 
         lines.append("")
+
+    if STATE_TIMESTAMP is not None:
+        lines.append(
+            f"{METRIC.format(metric='timestamp')}(type=\"state\") {STATE_TIMESTAMP}\n"
+        )
+    if len(VERSIONS) > 0:
+        lines.append(
+            METRIC_HELP.format(
+                metric=METRIC.format(metric="versions"),
+                help="The software and hardware versions of the IHD.",
+            )
+        )
+        lines.append(
+            METRIC_TYPE.format(
+                metric=METRIC.format(metric="versions"),
+                type="gauge",
+            )
+        )
+        lines.append(
+            METRIC.format(metric="versions")
+            + "{"
+            + ",".join(f'{k}="{v}"' for k, v in VERSIONS.items())
+            + "} 1\n"
+        )
+    if RSSI is not None:
+        lines.append(
+            METRIC_HELP.format(
+                metric=METRIC.format(metric="rssi"),
+                help="The RSSI of the HAN connection.",
+            )
+        )
+        lines.append(
+            METRIC_TYPE.format(
+                metric=METRIC.format(metric="rssi"),
+                type="gauge",
+            )
+        )
+        lines.append(f"{METRIC.format(metric='rssi')} {RSSI}\n")
+    if LQI is not None:
+        lines.append(
+            METRIC_HELP.format(
+                metric=METRIC.format(metric="lqi"),
+                help="The LQI of the HAN connection (0 min, 255 best).",
+            )
+        )
+        lines.append(
+            METRIC_TYPE.format(
+                metric=METRIC.format(metric="lqi"),
+                type="gauge",
+            )
+        )
+        lines.append(f"{METRIC.format(metric='lqi')} {LQI}\n")
 
     return "\n".join(lines)
 
