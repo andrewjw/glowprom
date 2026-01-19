@@ -1,0 +1,1 @@
+{"timestamp": "2026-01-19T20:55:38Z", "software": "v2.0.2","hardware": "GLOW-IHD-02-1v4-SMETS2", "wifistamac": "BCDDC2C6A91C","smetsversion": "SMETS2", "eui": "70:B3:D5:21:E0:00:8D:10","zigbee": "1.2.5", "han": {"rssi": -88, "status": "joined", "lqi": 48}}

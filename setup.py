@@ -23,17 +23,21 @@ try:
 except ImportError:
     import re
 
-    with open('glowprom.egg-info/PKG-INFO') as f:
+    with open("glowprom.egg-info/PKG-INFO") as f:
         __version__ = re.search("^Version: (.*)$", f.read(), re.MULTILINE).group(1)
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
-with open('requirements.txt' if os.path.exists('requirements.txt') else 'glowprom.egg-info/requires.txt') as f:
+with open(
+    "requirements.txt"
+    if os.path.exists("requirements.txt")
+    else "glowprom.egg-info/requires.txt"
+) as f:
     requirements = f.read().splitlines()
 
 setuptools.setup(
-    name="glowprom", # Replace with your own username
+    name="glowprom",  # Replace with your own username
     version=__version__,
     author="Andrew Wilkinson",
     author_email="andrewjwilkinson@gmail.com",
@@ -52,6 +56,6 @@ setuptools.setup(
         "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
         "Operating System :: OS Independent",
     ],
-    python_requires='>=3.10',
+    python_requires=">=3.10",
     install_requires=requirements,
 )
