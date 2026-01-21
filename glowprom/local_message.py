@@ -212,7 +212,7 @@ def local_message(msg):
 
     if STATE_TIMESTAMP is not None:
         lines.append(
-            f"{METRIC.format(metric='timestamp')}\{type=\"state\"\} {STATE_TIMESTAMP}\n"
+            f"{METRIC.format(metric='timestamp')}{{type=\"state\"}} {STATE_TIMESTAMP}\n"
         )
     if len(VERSIONS) > 0:
         lines.append(

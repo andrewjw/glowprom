@@ -53,6 +53,10 @@ class TestLocalMessage(unittest.TestCase):
         prom = local_message(MockMessage(STATE_MESSAGE_TEXT))
 
         self.assertIn(
+            'glowprom_timestamp{type="state"} 1768856138.0',
+            prom,
+        )
+        self.assertIn(
             'glowprom_versions{software="v2.0.2",hardware="GLOW-IHD-02-1v4-SMETS2",smetsversion="SMETS2",zigbee="1.2.5"} 1',
             prom,
         )
