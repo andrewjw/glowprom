@@ -19,7 +19,6 @@ import unittest
 
 from glowprom.local_message import local_message
 
-
 ELECTRIC_MESSAGE_TEXT = open("tests/test_local_electric_message.txt", "rb").read()
 GAS_MESSAGE_TEXT = open("tests/test_local_gas_message.txt", "rb").read()
 STATE_MESSAGE_TEXT = open("tests/test_local_state_message.txt", "rb").read()

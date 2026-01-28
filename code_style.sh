@@ -2,4 +2,4 @@
 
 set -e
 
-black bin/ glowprom/ tests/
+black .
