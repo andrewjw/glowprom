@@ -19,7 +19,6 @@ import unittest
 
 from glowprom.cloud_message import cloud_message
 
-
 MESSAGE_TEXT = open("tests/test_message.txt", "rb").read()
 
 
