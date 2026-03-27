@@ -16,6 +16,8 @@
 
 import datetime
 import json
+from typing import Any, Dict, Tuple
+import logging
 
 # {'electricitymeter': {'timestamp': '2022-11-07T09:20:08Z',
 #   'energy': {'export': {'cumulative': 0.0, 'units': 'kWh'},
@@ -66,15 +68,15 @@ METRIC_METADATA = {
 METRIC_HELP = "# HELP {metric} {help}"
 METRIC_TYPE = "# TYPE {metric} {type}"
 
-ELECTRIC_DATA = {}
-GAS_DATA = {}
-STATE_TIMESTAMP = None
+ELECTRIC_DATA: Dict[str, Dict[str, float | Tuple[float, str]]] = {}
+GAS_DATA: Dict[str, Dict[str, float | Tuple[float, str]]] = {}
+STATE_TIMESTAMP: float | None = None
 VERSIONS = {}
 RSSI = None
 LQI = None
 
 
-def local_message(msg):
+def local_message(msg: Any) -> str:
     # # Code adapted from
     # # https://gist.github.com/ndfred/b373eeafc4f5b0870c1b8857041289a9
     payload = json.loads(msg.payload)
@@ -84,7 +86,7 @@ def local_message(msg):
 
         mpan = energy["import"]["mpan"]
         if mpan.lower() == "read pending":  # pragma: no cover
-            return
+            return generate_metrics()
         if mpan not in ELECTRIC_DATA:
             ELECTRIC_DATA[mpan] = {}
         ELECTRIC_DATA[mpan]["timestamp"] = datetime.datetime.strptime(
@@ -118,12 +120,25 @@ def local_message(msg):
         energy = payload["gasmeter"]["energy"]
         mprn = energy["import"]["mprn"]
         if mprn.lower() == "read pending":  # pragma: no cover
-            return
+            return generate_metrics()
         if mprn not in GAS_DATA:
             GAS_DATA[mprn] = {}
-        GAS_DATA[mprn]["timestamp"] = datetime.datetime.strptime(
+
+        timestamp = datetime.datetime.strptime(
             payload["gasmeter"]["timestamp"], r"%Y-%m-%dT%H:%M:%SZ"
         ).timestamp()
+
+        if "timestamp" in GAS_DATA[mprn]:
+            previous_timestamp = GAS_DATA[mprn]["timestamp"]
+            assert isinstance(previous_timestamp, float)
+            if timestamp < previous_timestamp:
+                logging.warning(
+                    f"Ignoring gas message, time has gone backwards - {timestamp} < {GAS_DATA[mprn]["timestamp"]}"
+                )
+                logging.warning(f"Dropping {payload["gasmeter"]}")
+                return generate_metrics()
+
+        GAS_DATA[mprn]["timestamp"] = timestamp
         GAS_DATA[mprn]["import_cumulative"] = convert_units(
             energy["import"]["cumulative"], energy["import"]["units"]
         )
@@ -162,8 +177,12 @@ def local_message(msg):
         RSSI = payload["han"]["rssi"]
         LQI = payload["han"]["lqi"]
     else:  # pragma: no cover
-        print(f"Unknown payload type {key}")
+        print(f"Unknown payload type {payload.keys()}")
 
+    return generate_metrics()
+
+
+def generate_metrics() -> str:
     lines = []
     for metric in METRIC_METADATA.keys():
         help, metric_type, has_units = METRIC_METADATA[metric]
@@ -180,15 +199,14 @@ def local_message(msg):
 
         for mpan in ELECTRIC_DATA:
             if metric in ELECTRIC_DATA[mpan]:
+                metric_value = ELECTRIC_DATA[mpan][metric]
                 if has_units:
-                    value = ELECTRIC_DATA[mpan][metric][0]
-                    metric_name = (
-                        METRIC.format(metric=metric)
-                        + "_"
-                        + ELECTRIC_DATA[mpan][metric][1]
-                    )
+                    assert isinstance(metric_value, tuple)
+                    value = metric_value[0]
+                    metric_name = METRIC.format(metric=metric) + "_" + metric_value[1]
                 else:
-                    value = ELECTRIC_DATA[mpan][metric]
+                    assert isinstance(metric_value, float)
+                    value = metric_value
                     metric_name = METRIC.format(metric=metric)
 
                 keys = METRIC_KEYS.format(type="electric", idname="mpan", idvalue=mpan)
@@ -196,13 +214,14 @@ def local_message(msg):
 
         for mprn in GAS_DATA:
             if metric in GAS_DATA[mprn]:
+                metric_value = GAS_DATA[mprn][metric]
                 if has_units:
-                    value = GAS_DATA[mprn][metric][0]
-                    metric_name = (
-                        METRIC.format(metric=metric) + "_" + GAS_DATA[mprn][metric][1]
-                    )
+                    assert isinstance(metric_value, tuple)
+                    value = metric_value[0]
+                    metric_name = METRIC.format(metric=metric) + "_" + metric_value[1]
                 else:
-                    value = GAS_DATA[mprn][metric]
+                    assert isinstance(metric_value, float)
+                    value = metric_value
                     metric_name = METRIC.format(metric=metric)
 
                 keys = METRIC_KEYS.format(type="gas", idname="mprn", idvalue=mprn)
