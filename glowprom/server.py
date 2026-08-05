@@ -35,14 +35,18 @@ class Handler(http.server.BaseHTTPRequestHandler):
     def send_index(self):
         self.send_response(200)
         self.end_headers()
-        self.wfile.write("""
+        self.wfile.write(
+            """
 <html>
 <head><title>Glow Prometheus</title></head>
 <body>
 <h1>Glow Prometheus</h1>
 <p><a href="/metrics">Metrics</a></p>
 </body>
-</html>""".encode("utf8"))
+</html>""".encode(
+                "utf8"
+            )
+        )
 
     def send_metrics(self):
         if STATS is None:

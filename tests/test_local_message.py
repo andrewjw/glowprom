@@ -21,6 +21,9 @@ from glowprom.local_message import local_message
 
 ELECTRIC_MESSAGE_TEXT = open("tests/test_local_electric_message.txt", "rb").read()
 GAS_MESSAGE_TEXT = open("tests/test_local_gas_message.txt", "rb").read()
+GAS_MESSAGE_BACKWARDS_TEXT = open(
+    "tests/test_local_gas_backwards_message.txt", "rb"
+).read()
 STATE_MESSAGE_TEXT = open("tests/test_local_state_message.txt", "rb").read()
 
 
@@ -41,6 +44,23 @@ class TestLocalMessage(unittest.TestCase):
 
     def test_gas_message(self):
         prom = local_message(MockMessage(GAS_MESSAGE_TEXT))
+
+        self.assertIn(
+            'glowprom_import_cumulative_Wh{type="gas", mprn="wxyz"}'
+            + " 66589570.00000001",
+            prom,
+        )
+
+    def test_gas_message_ignore_backwards(self):
+        prom = local_message(MockMessage(GAS_MESSAGE_TEXT))
+
+        self.assertIn(
+            'glowprom_import_cumulative_Wh{type="gas", mprn="wxyz"}'
+            + " 66589570.00000001",
+            prom,
+        )
+
+        prom = local_message(MockMessage(GAS_MESSAGE_BACKWARDS_TEXT))
 
         self.assertIn(
             'glowprom_import_cumulative_Wh{type="gas", mprn="wxyz"}'
