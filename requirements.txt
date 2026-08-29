@@ -1,6 +1,6 @@
 paho-mqtt==2.1.0
 black==26.5.1
-coverage==7.15.4
+coverage==7.16.0
 python-semantic-release==10.6.2
 packaging==26.3
 wheel==0.48.0
