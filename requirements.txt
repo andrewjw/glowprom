@@ -4,5 +4,5 @@ coverage==7.16.0
 python-semantic-release==10.6.2
 packaging==26.3
 wheel==0.48.0
-twine==6.2.0
+twine==7.0.0
 setuptools==82.0.1
