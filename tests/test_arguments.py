@@ -35,7 +35,7 @@ class TestArguments(unittest.TestCase):
         args = get_arguments(["--user", "testuser", "--topic", "topic"])
         self.assertEqual("testpassword", args.passwd)
 
-    def test_passwd_environ(self):
+    def test_topic_environ(self):
         os.environ["GLOWPROM_TOPIC"] = "topic"
         args = get_arguments(["--user", "testuser", "--passwd", "testpassword"])
         self.assertEqual("topic", args.topic)
