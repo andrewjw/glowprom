@@ -13,13 +13,14 @@
       "automerge": true
     },
     {
-      "matchUpdateTypes": [
-        "minor"
+      "matchDatasources": [
+        "docker"
       ],
-      "matchCategories": [
-        "dockerfile"
+      "matchPackageNames": [
+        "python"
       ],
-      "automerge": true
+      "matchUpdateTypes": ["minor"],
+      "automerge": false
     }
   ]
 }
