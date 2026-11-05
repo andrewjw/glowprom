@@ -2,6 +2,32 @@
 
 <!-- version list -->
 
+## v2.0.0 (2026-11-05)
+
+### Chores
+
+- Add signal strength to Grafana dashboard.
+  ([`9ac8be0`](https://github.com/andrewjw/glowprom/commit/9ac8be09a514c760bf61e78b961077f814e4f4f1))
+
+- Don't automerge Python version changes.
+  ([`756b106`](https://github.com/andrewjw/glowprom/commit/756b106fc3b05ee37c1abc778b13778cc02bde0d))
+
+- Fix code style to match black 26.
+  ([`1c94d1c`](https://github.com/andrewjw/glowprom/commit/1c94d1cef8c41d6f7487b7771acbd0a08c500193))
+
+- Fix updating of changelog in the repo.
+  ([`d38b041`](https://github.com/andrewjw/glowprom/commit/d38b04195a87e1fe26639c5840cfdb3228cd402b))
+
+### Features
+
+- Add support from Python 3.15 and drop 3.10.
+  ([`6766502`](https://github.com/andrewjw/glowprom/commit/6766502371de601750d46744d2b4f1291f2b4f62))
+
+### Breaking Changes
+
+- Drop support for Python 3.10.
+
+
 ## v1.2.1 (2026-01-21)
 
 ### Bug Fixes
