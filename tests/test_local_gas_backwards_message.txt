@@ -1,0 +1,12 @@
+{"gasmeter": {"timestamp": "2021-11-07T09:35:38Z",
+   "energy": {"import": {"cumulative": 0, "day": 10,
+                         "week": 0, "month": 0, "units": "kWh",
+                         "cumulativevol": 0,
+                         "cumulativevolunits": "m3",
+                         "dayvol": 0, "weekvol": 0,
+                         "monthvol": 0,
+                         "dayweekmonthvolunits": "kWh",
+                         "mprn": "wxyz",
+                         "supplier": "---",
+                         "price": {"unitrate": 0.03623,
+                                   "standingcharge": 0.168}}}}}
