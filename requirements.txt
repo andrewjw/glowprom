@@ -2,7 +2,7 @@ paho-mqtt==2.2.0
 black==26.10.1
 coverage==7.17.5
 python-semantic-release==10.7.0
-packaging==26.3
+packaging==26.4
 wheel==0.48.0
 twine==7.0.0
 setuptools==84.2.1
