@@ -2,6 +2,14 @@
 
 <!-- version list -->
 
+## v2.1.0 (2026-11-25)
+
+### Features
+
+- Handle the case when we get gas data from the past by ignoring it. Also adds some type checking.
+  ([`6509717`](https://github.com/andrewjw/glowprom/commit/65097173d3acf4f0a2a6b8b1f63ecd0ed64ad813))
+
+
 ## v2.0.0 (2026-11-05)
 
 ### Chores
