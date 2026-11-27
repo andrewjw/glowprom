@@ -2,6 +2,14 @@
 
 <!-- version list -->
 
+## v2.1.1 (2026-11-27)
+
+### Bug Fixes
+
+- Use latest PrometheusText version and fix style.
+  ([`62f6e5e`](https://github.com/andrewjw/glowprom/commit/62f6e5ee7a977f9846236453db1b5b02b9fa2f17))
+
+
 ## v2.1.0 (2026-11-25)
 
 ### Features
