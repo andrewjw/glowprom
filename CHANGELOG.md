@@ -2,6 +2,14 @@
 
 <!-- version list -->
 
+## v2.1.2 (2026-11-27)
+
+### Bug Fixes
+
+- Update Python requires to 3.11+
+  ([`8f4864f`](https://github.com/andrewjw/glowprom/commit/8f4864f4a73622d63a0333cead6fbeb37100afe4))
+
+
 ## v2.1.1 (2026-11-27)
 
 ### Bug Fixes
