@@ -50,7 +50,10 @@ class Handler(http.server.BaseHTTPRequestHandler):
             self.end_headers()
         else:
             self.send_response(200)
-            self.send_header('content-type', 'text/plain; version=0.0.4; charset=utf-8; escaping=values')
+            self.send_header(
+                "content-type",
+                "text/plain; version=1.0.0; charset=utf-8; escaping=values",
+            )
             self.end_headers()
             self.wfile.write(STATS.encode("utf8"))
 
